@@ -1,30 +1,33 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Layout from "./compontents/Layout";
+import Assets from "./views/Assets";
+import Diary from "./views/Diary";
+import Money from "./views/Money";
+import More from "./views/More.";
+import Notfound from "./views/Notfound";
+import Statistic from "./views/Statistic";
 
 export default function App() {
   return (
-    <Layout>
-      <Switch>
-        <Route exact path={"/assets"}>
-          assets
-        </Route>
-        <Route exact path={"/statistic"}>
-          statistic
-        </Route>
-        <Route exact path={"/"}>
-          money
-        </Route>
-        <Route exact path={"/diary"}>
-          diary
-        </Route>
-        <Route exact path={"/more"}>
-          more
-        </Route>
-        <Route exact path={"*"}>
-          404
-        </Route>
-      </Switch>
-    </Layout>
+    <Switch>
+      <Route exact path={"/assets"}>
+        <Assets />
+      </Route>
+      <Route exact path={"/statistic"}>
+        <Statistic />
+      </Route>
+      <Route exact path={"/"}>
+        <Money />
+      </Route>
+      <Route exact path={"/diary"}>
+        <Diary />
+      </Route>
+      <Route exact path={"/more"}>
+        <More />
+      </Route>
+      <Route exact path={"*"}>
+        <Notfound />
+      </Route>
+    </Switch>
   );
 }
