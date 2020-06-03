@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Icon from "./Icon"
 
 const LayoutStyle = styled.div`
   display: flex;
@@ -33,18 +34,23 @@ export default function Layout(props: { children: React.ReactNode; }) {
       <NavStyle>
         <ul>
           <li>
+            <Icon name="assets"/>
             <Link to="/assets">资产</Link>
           </li>
           <li>
+            <Icon name="statistic"/>
             <Link to="/statistic">图表</Link>
           </li>
           <li>
+            <Icon name="add"/>
             <Link to="/">记账</Link>
           </li>
           <li>
+            <Icon name="diary"/>
             <Link to="/diary">日记</Link>
           </li>
           <li>
+            <Icon name="more"/>
             <Link to="/more">更多</Link>
           </li>
         </ul>
