@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Assets from "./views/Assets";
 import Diary from "./views/Diary";
 import Money from "./views/Money";
@@ -10,13 +10,14 @@ import Statistic from "./views/Statistic";
 export default function App() {
   return (
     <Switch>
+      <Redirect exact from="/" to="/money" />
       <Route exact path={"/assets"}>
         <Assets />
       </Route>
       <Route exact path={"/statistic"}>
         <Statistic />
       </Route>
-      <Route exact path={"/"}>
+      <Route exact path={"/money"}>
         <Money />
       </Route>
       <Route exact path={"/diary"}>

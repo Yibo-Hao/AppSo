@@ -5,14 +5,14 @@ import styled from "styled-components";
 
 const NavStyle = styled.nav`
   line-height: 24px;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.25);
   > ul {
     display: flex;
     > li {
       width: 20%;
       text-align: center;
       padding: 2px;
-      margin: 4px 0;
+      margin-top: 2px;
     }
   }
 `;
@@ -21,12 +21,13 @@ const LinkStyle = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  >span{
-    font-size: 12px;
+  > span {
+    font-size: 10px;
     line-height: 16px;
   }
-  >svg{
-  margin: 2px;
+  > svg {
+    margin: 2px;
+    font-size: 22px;
   }
 `;
 
@@ -35,7 +36,12 @@ export default function Nav() {
     <NavStyle>
       <ul>
         <li>
-          <NavLink to="/assets">
+          <NavLink
+            to="/assets"
+            activeStyle={{
+              color: "blue"
+            }}
+          >
             <LinkStyle>
               <Icon name="assets" />
               <span>资产</span>
@@ -43,7 +49,12 @@ export default function Nav() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/statistic">
+          <NavLink
+            to="/statistic"
+            activeStyle={{
+              color: "blue"
+            }}
+          >
             <LinkStyle>
               <Icon name="statistic" />
               <span>图表</span>
@@ -51,7 +62,12 @@ export default function Nav() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/">
+          <NavLink
+            to="/money"
+            activeStyle={{
+              color: "blue"
+            }}
+          >
             <LinkStyle>
               <Icon name="add" />
               <span>记账</span>
@@ -59,7 +75,12 @@ export default function Nav() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/diary">
+          <NavLink
+            to="/diary"
+            activeStyle={{
+              color: "blue"
+            }}
+          >
             <LinkStyle>
               <Icon name="diary" />
               <span>日记</span>
@@ -67,7 +88,12 @@ export default function Nav() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/more">
+          <NavLink
+            to="/more"
+            activeStyle={{
+              color: "blue"
+            }}
+          >
             <LinkStyle>
               <Icon name="more" />
               <span>更多</span>
