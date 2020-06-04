@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Icon from "./Icon";
 import React from "react";
 import styled from "styled-components";
@@ -12,6 +12,7 @@ const NavStyle = styled.nav`
       width: 20%;
       text-align: center;
       padding: 2px;
+      margin: 4px 0;
     }
   }
 `;
@@ -34,44 +35,44 @@ export default function Nav() {
     <NavStyle>
       <ul>
         <li>
-          <Link to="/assets">
+          <NavLink to="/assets">
             <LinkStyle>
               <Icon name="assets" />
               <span>资产</span>
             </LinkStyle>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/statistic">
+          <NavLink to="/statistic">
             <LinkStyle>
               <Icon name="statistic" />
               <span>图表</span>
             </LinkStyle>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/">
+          <NavLink to="/">
             <LinkStyle>
               <Icon name="add" />
               <span>记账</span>
             </LinkStyle>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/diary">
+          <NavLink to="/diary">
             <LinkStyle>
               <Icon name="diary" />
               <span>日记</span>
             </LinkStyle>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/more">
+          <NavLink to="/more">
             <LinkStyle>
               <Icon name="more" />
               <span>更多</span>
             </LinkStyle>
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </NavStyle>
