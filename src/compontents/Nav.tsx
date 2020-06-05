@@ -2,10 +2,10 @@ import { NavLink } from "react-router-dom";
 import Icon from "./Icon";
 import React from "react";
 import styled from "styled-components";
-
 const NavStyle = styled.nav`
   line-height: 24px;
   box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.25);
+  background: #fff;
   > ul {
     display: flex;
     > li {
@@ -52,7 +52,7 @@ export default function Nav() {
           <NavLink
             to="/statistic"
             activeStyle={{
-              color: "blue"
+              color: "blue",
             }}
           >
             <LinkStyle>

@@ -10,6 +10,7 @@ const LayoutStyle = styled.div`
 const Main = styled.div`
   flex-grow: 1;
   overflow: auto;
+  background: rgb(251,251,251);
 `;
 
 export default function Layout(props: { children: React.ReactNode }) {

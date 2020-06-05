@@ -5,7 +5,7 @@ require("../assets/add.svg");
 require("../assets/diary.svg");
 require("../assets/more.svg");
 require("../assets/statistic.svg");
-
+require("../assets/back.svg")
 const SvgStyle = styled.svg`
   width: 1em;
   height: 1em;
