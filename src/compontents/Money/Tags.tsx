@@ -3,13 +3,12 @@ import styled from "styled-components";
 
 const TagsStyle = styled.section`
   padding: 10px 16px;
-  border: 1px solid red;
   ul {
     display: flex;
     flex-direction: row;
     li {
+      height: 70px;
       line-height: 70px;
-      border: 1px solid red;
       padding: 0 8px;
     }
   }

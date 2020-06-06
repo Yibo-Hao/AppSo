@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Icon from "../Icon";
 const NumberPadStyle = styled.section`
   button {
     width: 25%;
@@ -23,7 +24,9 @@ export default function NumberPad() {
       <button>1</button>
       <button>2</button>
       <button>3</button>
-      <button>删除</button>
+      <button className="delete">
+          <Icon name="delete"/>
+      </button>
       <button>4</button>
       <button>5</button>
       <button>6</button>

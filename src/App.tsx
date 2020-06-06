@@ -10,7 +10,7 @@ import Statistic from "./views/Statistic";
 export default function App() {
   return (
     <Switch>
-      <Redirect exact from="/" to="/money" />
+      <Redirect exact from="/" to="/assets" />
       <Route exact path={"/assets"}>
         <Assets />
       </Route>
