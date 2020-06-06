@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Tags_Style = styled.section`
+const TagsStyle = styled.section`
   padding: 10px 16px;
   border: 1px solid red;
   ul {
@@ -14,15 +14,15 @@ const Tags_Style = styled.section`
     }
   }
 `;
-export default function Tags_Money() {
+export default function TagsMoney() {
   return (
-    <Tags_Style>
+    <TagsStyle>
       <ul>
         <li>衣</li>
         <li>食</li>
         <li>住</li>
         <li>行</li>
       </ul>
-    </Tags_Style>
+    </TagsStyle>
   );
 }

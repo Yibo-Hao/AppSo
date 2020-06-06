@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-const Input_Wrapper = styled.section`
+const InputWrapper = styled.section`
   padding: 10px 16px;
   font-size: 30px;
   border: 1px solid red;
@@ -14,13 +14,13 @@ const Input_Wrapper = styled.section`
   }
 `;
 
-export default function Input_Money() {
+export default function InputMoney() {
   return (
-    <Input_Wrapper>
+    <InputWrapper>
       <label>
         <span>￥</span>
         <input type="text" />
       </label>
-    </Input_Wrapper>
+    </InputWrapper>
   );
 }

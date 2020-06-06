@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-const NumberPad_Style = styled.section`
+const NumberPadStyle = styled.section`
   border: 1px solid red;
   button {
     width: 25%;
@@ -13,7 +13,7 @@ const NumberPad_Style = styled.section`
 `;
 export default function NumberPad() {
   return (
-    <NumberPad_Style>
+    <NumberPadStyle>
       <button>1</button>
       <button>2</button>
       <button>3</button>
@@ -27,6 +27,6 @@ export default function NumberPad() {
       <button>9</button>
       <button>0</button>
       <button>.</button>
-    </NumberPad_Style>
+    </NumberPadStyle>
   );
 }

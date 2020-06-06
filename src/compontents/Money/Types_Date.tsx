@@ -30,16 +30,16 @@ const DateStyle = styled.section`
   }
 `;
 
-const Type_DateStyle_Wrapper = styled.section`
+const TypeDateStyleWrapper = styled.section`
   display: flex;
   justify-content: space-between;
   border: 1px solid red;
   padding: 0 16px;
   color: rgb(189,189,189);
 `;
-export default function Types_Date() {
+export default function TypesDate() {
     return (
-        <Type_DateStyle_Wrapper>
+        <TypeDateStyleWrapper>
             <TypeStyle>
                 <ul>
                     <li>支出</li>
@@ -49,6 +49,6 @@ export default function Types_Date() {
             <DateStyle>
                 <div>6月4日</div>
             </DateStyle>
-        </Type_DateStyle_Wrapper>
+        </TypeDateStyleWrapper>
     );
 }

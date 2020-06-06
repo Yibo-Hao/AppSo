@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Note_Style = styled.section`
+const NoteStyle = styled.section`
   padding: 10px 16px;
   border: 1px solid red;
   button {
@@ -10,10 +10,10 @@ const Note_Style = styled.section`
     color: rgb(87,107,149);
   }
 `;
-export default function Note_Money() {
+export default function NoteMoney() {
   return (
-    <Note_Style>
+    <NoteStyle>
       <button>添加备注</button>
-    </Note_Style>
+    </NoteStyle>
   );
 }

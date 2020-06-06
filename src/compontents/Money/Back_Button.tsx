@@ -6,7 +6,7 @@ const Button = styled.button`
   background: rgb(255,255,255);
   padding: 5px 10px;
 `
-export default function Back_Button() {
+export default function BackButton() {
     return(
         <section style={{border:"1px solid red"}}>
             <Button>
