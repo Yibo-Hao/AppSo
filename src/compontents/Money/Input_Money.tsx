@@ -3,11 +3,14 @@ import styled from "styled-components";
 const InputWrapper = styled.section`
   padding: 10px 16px;
   font-size: 30px;
-  border: 1px solid red;
   label {
     display: flex;
+    span{
+      text-align: center;
+    }
     input {
-      font-size: 30px;
+      font-size: 35px;
+      line-height: 40px;
       flex-grow: 1;
       overflow: hidden;
     }

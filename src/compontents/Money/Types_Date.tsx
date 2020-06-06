@@ -9,7 +9,7 @@ const TypeStyle = styled.section`
       margin: 10px 0;
       border-radius: 16px;
       line-height: 20px;
-      padding: 0.25em 0.75em;
+      padding: 5px 0.75em;
       font-size: 14px;
       &:last-child {
         margin-left: 10px;
@@ -33,8 +33,7 @@ const DateStyle = styled.section`
 const TypeDateStyleWrapper = styled.section`
   display: flex;
   justify-content: space-between;
-  border: 1px solid red;
-  padding: 0 16px;
+  padding: 5px 16px;
   color: rgb(189,189,189);
 `;
 export default function TypesDate() {

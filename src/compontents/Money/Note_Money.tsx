@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 const NoteStyle = styled.section`
   padding: 10px 16px;
-  border: 1px solid red;
   button {
     background: rgb(255, 255, 255);
     font-size: 14px;
     color: rgb(87,107,149);
+    line-height: 20px;
   }
 `;
 export default function NoteMoney() {

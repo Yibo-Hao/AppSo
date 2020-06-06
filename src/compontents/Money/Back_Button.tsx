@@ -2,13 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import Icon from "../Icon"
 const Button = styled.button`
-  font-size: 20px;
+  font-size: 22px;
   background: rgb(255,255,255);
-  padding: 5px 10px;
+  padding: 15px 10px;
+  :first-child{
+    line-height: 30px;
+  }
 `
 export default function BackButton() {
     return(
-        <section style={{border:"1px solid red"}}>
+        <section>
             <Button>
                 <Icon name="back"/>
             </Button>
