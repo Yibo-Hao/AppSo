@@ -5,7 +5,8 @@ const NumberPadStyle = styled.section`
   button {
     width: 25%;
     background: rgb(255, 255, 255);
-    font-size: 25px;
+    font-size: 20px;
+    font-weight: 500;
     line-height: 64px;
     border-radius: 6px;
     box-shadow: inset 0 0 0 4px rgb(251, 251, 251);
@@ -13,6 +14,9 @@ const NumberPadStyle = styled.section`
   .OK {
     line-height: 192px;
     float: right;
+    color: white;
+    font-size: 18px;
+    background: rgb(157,216,184);
   }
   .zero {
     width: 50%;

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Assets from "./Assets";
 import TypesDate from "../compontents/Money/Types_Date";
 import BackButton from "../compontents/Money/Back_Button";
 import InputMoney from "../compontents/Money/Input_Money";
@@ -16,20 +15,19 @@ const MoneyWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   border-radius: 8px;
+  background: rgb(251, 251, 251);
 `;
 export default function Money() {
   return (
-      <div>
-          <Assets/>
-          <MoneyWrapper>
-              <BackButton />
-              <TypesDate />
-              <InputMoney />
-              <TagsMoney />
-              <NoteMoney />
-              <NumberPad />
-          </MoneyWrapper>
-      </div>
-
+    <div>
+      <MoneyWrapper>
+        <BackButton />
+        <TypesDate />
+        <InputMoney />
+        <TagsMoney />
+        <NoteMoney />
+        <NumberPad />
+      </MoneyWrapper>
+    </div>
   );
 }
