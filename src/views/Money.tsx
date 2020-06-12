@@ -4,7 +4,7 @@ import TypesDate from "../compontents/Money/Types_Date";
 import BackButton from "../compontents/Money/Back_Button";
 import InputMoney from "../compontents/Money/Input_Money";
 import TagsMoney from "../compontents/Money/Tags";
-import NoteMoney from "../compontents/Money/Note_Money";
+import NoteButton from "../compontents/Money/NoteButton";
 import NumberPad from "../compontents/Money/NumberPad";
 const MoneyWrapper = styled.div`
   position: absolute;
@@ -25,7 +25,7 @@ export default function Money() {
         <TypesDate />
         <InputMoney />
         <TagsMoney />
-        <NoteMoney />
+        <NoteButton />
         <NumberPad />
       </MoneyWrapper>
     </div>

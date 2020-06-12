@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const TypeStyle = styled.section`
@@ -11,6 +11,11 @@ const TypeStyle = styled.section`
       line-height: 20px;
       padding: 5px 0.75em;
       font-size: 14px;
+      &.selected {
+        background: rgb(237, 248, 242);
+        color: rgb(120, 218, 185);
+        border: 0.5px solid rgb(157, 218, 185);
+      }
       &:last-child {
         margin-left: 10px;
       }
@@ -34,20 +39,33 @@ const TypeDateStyleWrapper = styled.section`
   display: flex;
   justify-content: space-between;
   padding: 5px 16px;
-  color: rgb(189,189,189);
+  color: rgb(189, 189, 189);
 `;
 export default function TypesDate() {
+  const [typeList] = useState<("-"|"+")[]>(["-", "+"]);
+  const [type, setType] = useState("-");
     return (
-        <TypeDateStyleWrapper>
-            <TypeStyle>
-                <ul>
-                    <li>支出</li>
-                    <li>收入</li>
-                </ul>
-            </TypeStyle>
-            <DateStyle>
-                <div>6月4日</div>
-            </DateStyle>
-        </TypeDateStyleWrapper>
-    );
+    <TypeDateStyleWrapper>
+      <TypeStyle>
+        <ul>
+          {typeList.map(c => {
+            return (
+              <li
+                key={c}
+                className={type === c ? "selected" : ""}
+                onClick={() => {
+                  setType(c);
+                }}
+              >
+                {c === "-" ? "支出" : "收入"}
+              </li>
+            );
+          })}
+        </ul>
+      </TypeStyle>
+      <DateStyle>
+        <div>6月4日</div>
+      </DateStyle>
+    </TypeDateStyleWrapper>
+  );
 }

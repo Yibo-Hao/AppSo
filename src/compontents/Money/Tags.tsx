@@ -3,7 +3,9 @@ import styled from "styled-components";
 
 const TagsStyle = styled.section`
   padding: 10px 16px;
+
   ul {
+    border-top: 0.5px solid rgba(0,0,0,0.25);
     display: flex;
     flex-direction: row;
     overflow-x: auto;
@@ -17,7 +19,7 @@ const TagsStyle = styled.section`
       line-height: 70px;
       padding: 0 8px;
       &.selected {
-        background: rgb(62,181,117);
+        background: rgb(62, 181, 117);
       }
     }
   }

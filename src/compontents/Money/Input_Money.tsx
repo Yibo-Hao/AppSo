@@ -6,7 +6,6 @@ const InputWrapper = styled.section`
         background: rgb(251,251,251);
   label {
     display: flex;
-    box-shadow: 0 0.5px 0 0 rgba(0,0,0,0.25);
     span{
       text-align: center;
     }
