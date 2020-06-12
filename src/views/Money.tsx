@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import TypesDate from "../compontents/Money/Types_Date";
 import BackButton from "../compontents/Money/Back_Button";
@@ -18,16 +18,29 @@ const MoneyWrapper = styled.div`
   background: rgb(251, 251, 251);
 `;
 export default function Money() {
+  const [selected, setSelected] = useState({
+    tag: "服饰" as string,
+    type: "-" as "-" | "+",
+    note: "" as string,
+    amount: "" as string
+  });
+  console.log(selected)
   return (
-    <div>
-      <MoneyWrapper>
-        <BackButton />
-        <TypesDate />
-        <InputMoney />
-        <TagsMoney />
-        <NoteButton />
-        <NumberPad />
-      </MoneyWrapper>
-    </div>
+    <MoneyWrapper>
+      <BackButton />
+      <TypesDate />
+      <InputMoney />
+      <TagsMoney
+        selected={selected.tag}
+        onChange={tag => {
+          setSelected({
+            ...selected,
+            tag
+          });
+        }}
+      />
+      <NoteButton />
+      <NumberPad />
+    </MoneyWrapper>
   );
 }

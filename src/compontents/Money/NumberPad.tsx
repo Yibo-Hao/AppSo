@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "../Icon";
 const NumberPadStyle = styled.section`
@@ -16,20 +16,56 @@ const NumberPadStyle = styled.section`
     float: right;
     color: white;
     font-size: 18px;
-    background: rgb(157,216,184);
+    background: rgb(157, 216, 184);
   }
   .zero {
     width: 50%;
   }
 `;
 export default function NumberPad() {
+  const [outPut, _setOutPut] = useState("");
+  const setOutPut = (outPut: string) => {
+    if (outPut.length > 14) {
+      outPut = outPut.slice(0, 14);
+    }
+    _setOutPut(outPut);
+  };
+  const onClickNumber = (e: React.MouseEvent) => {
+    const text = (e.target as HTMLButtonElement).textContent;
+    if (text === null) {
+      return;
+    }
+    switch (text) {
+      case "0":
+      case "1":
+      case "2":
+      case "3":
+      case "4":
+      case "5":
+      case "6":
+      case "7":
+      case "8":
+      case "9":
+        setOutPut(outPut + text);
+        break;
+      case "确定":
+        break;
+      case ".":
+        if (outPut.indexOf(text) === -1 && outPut.length !== 0)
+          setOutPut(outPut + text);
+        break;
+    }
+  };
+  const onClickDelete = () => {
+    setOutPut(outPut.slice(0, outPut.length - 1));
+  };
   return (
-    <NumberPadStyle>
+    <NumberPadStyle onClick={onClickNumber}>
       <button>1</button>
       <button>2</button>
       <button>3</button>
-      <button className="delete">
-          <Icon name="delete"/>
+      <button className="delete" onClick={onClickDelete}>
+        <Icon name="delete" />
       </button>
       <button>4</button>
       <button>5</button>
