@@ -17,6 +17,8 @@ const NoteWrapper = styled.div`
     width: 100%;
     font-size: 16px;
     padding: 16px;
+    display: flex;
+    flex-direction: column;
     > .nav {
       display: flex;
       justify-content: space-between;
@@ -42,6 +44,7 @@ const NoteWrapper = styled.div`
     > .limit {
       padding-top: 14px;
       color: rgb(218, 218, 218);
+      align-self: flex-start;
     }
   }
 `;
