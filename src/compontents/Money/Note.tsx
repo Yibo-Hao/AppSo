@@ -53,7 +53,7 @@ const Note = (props: Props) => {
   let [noteValue, setNoteValue] = useState<string>(props.note);
   let [noteState, setNoteState] = useState<boolean>(true);
   const onLimit = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length <= 15) setNoteValue(noteValue + e.target.value);
+    if (e.target.value.length <= 35) setNoteValue(e.target.value);
   };
   return noteState ? (
     <NoteWrapper>
@@ -84,7 +84,7 @@ const Note = (props: Props) => {
           value={noteValue}
           onChange={onLimit}
         />
-        <div className="limit">{noteValue.length}/15</div>
+        <div className="limit">{noteValue.length}/35</div>
       </div>
     </NoteWrapper>
   ) : null;
