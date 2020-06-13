@@ -24,6 +24,12 @@ export default function Money() {
     note: "" as string,
     outPut: "" as string
   });
+  const onChange = (obj: Partial<typeof selected>) => {
+    setSelected({
+      ...selected,
+      ...obj
+    });
+  };
   console.log(selected);
   return (
     <MoneyWrapper>
@@ -31,30 +37,21 @@ export default function Money() {
       <TypesDate
         type={selected.type}
         onChange={type => {
-          setSelected({
-            ...selected,
-            type
-          });
+          onChange({ type });
         }}
       />
       <InputMoney outPut={selected.outPut} />
       <TagsMoney
         selected={selected.tag}
         onChange={tag => {
-          setSelected({
-            ...selected,
-            tag
-          });
+          onChange({ tag });
         }}
       />
       <NoteButton />
       <NumberPad
         outPut={selected.outPut}
         onChange={outPut => {
-          setSelected({
-            ...selected,
-            outPut
-          });
+          onChange({ outPut });
         }}
       />
     </MoneyWrapper>
