@@ -6,7 +6,6 @@ import Money from "./views/Money";
 import More from "./views/More.";
 import Notfound from "./views/Notfound";
 import Statistic from "./views/Statistic";
-import Note from "./compontents/Money/Note";
 
 export default function App() {
   return (
@@ -20,9 +19,6 @@ export default function App() {
       </Route>
       <Route exact path={"/money"}>
         <Money />
-      </Route>
-      <Route exact path={`/money/note`}>
-        <Note />
       </Route>
       <Route exact path={"/diary"}>
         <Diary />

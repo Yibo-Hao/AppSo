@@ -1,20 +1,32 @@
-import React  from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Link} from "react-router-dom";
+import Note from "./Note";
 
 const NoteStyle = styled.section`
   padding: 0 16px 10px 16px;
-  a {
+  button {
     background: rgb(255, 255, 255);
     font-size: 14px;
     color: rgb(87, 107, 149);
     line-height: 20px;
   }
 `;
-export default function NoteMoney() {
-  return (
-    <NoteStyle>
-      <Link to={`/money/note`}>添加备注</Link>
-    </NoteStyle>
-  );
+type Props = {
+  note: string;
+  onChange: (note: string) => void;
+};
+export default function NoteMoney(props: Props) {
+  const [noteState, setNoteState] = useState(false);
+  const onClickButton = () => {
+    setNoteState(!noteState);
+  };
+  if (noteState) {
+    return <Note note={props.note} onChange={props.onChange} />;
+  } else {
+    return (
+      <NoteStyle>
+        <button onClick={onClickButton}>添加备注</button>
+      </NoteStyle>
+    );
+  }
 }

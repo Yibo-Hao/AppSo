@@ -47,7 +47,12 @@ export default function Money() {
           onChange({ tag });
         }}
       />
-      <NoteButton />
+      <NoteButton
+        note={selected.note}
+        onChange={note => {
+          onChange({ note });
+        }}
+      />
       <NumberPad
         outPut={selected.outPut}
         onChange={outPut => {

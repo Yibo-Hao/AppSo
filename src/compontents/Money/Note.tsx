@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Icon from "../Icon";
 
 const NoteWrapper = styled.div`
   height: 100vh;
-  background: rgb(251, 251, 251);
-  position: relative;
+  background: rgba(0,0,0,0.15);
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
   > .note {
     background: white;
@@ -44,12 +46,18 @@ const NoteWrapper = styled.div`
     }
   }
 `;
-const Note = () => {
-  const [noteValue, setNoteValue] = useState<string>("");
-  const onLimit = (e: React.ChangeEvent<HTMLInputElement>)=>{
-    if (e.target.value.length<=15)
-    setNoteValue(e.target.value);
-  }
+type Props = {
+  note: string;
+  onChange: (note: string) => void;
+};
+const Note = (props: Props) => {
+  const [noteValue, setNoteValue] = useState<string>(props.note);
+  const onLimit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length <= 15) setNoteValue(e.target.value);
+  };
+  useEffect(() => {
+    props.onChange(noteValue);
+  }, [noteValue]);
   return (
     <NoteWrapper>
       <div className="note">
