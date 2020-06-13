@@ -22,14 +22,22 @@ export default function Money() {
     tag: "服饰" as string,
     type: "-" as "-" | "+",
     note: "" as string,
-    amount: "" as string
+    outPut: "" as string
   });
-  console.log(selected)
+  console.log(selected);
   return (
     <MoneyWrapper>
       <BackButton />
-      <TypesDate />
-      <InputMoney />
+      <TypesDate
+        type={selected.type}
+        onChange={type => {
+          setSelected({
+            ...selected,
+            type
+          });
+        }}
+      />
+      <InputMoney outPut={selected.outPut} />
       <TagsMoney
         selected={selected.tag}
         onChange={tag => {
@@ -40,7 +48,15 @@ export default function Money() {
         }}
       />
       <NoteButton />
-      <NumberPad />
+      <NumberPad
+        outPut={selected.outPut}
+        onChange={outPut => {
+          setSelected({
+            ...selected,
+            outPut
+          });
+        }}
+      />
     </MoneyWrapper>
   );
 }
