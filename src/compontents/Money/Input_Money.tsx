@@ -3,10 +3,10 @@ import styled from "styled-components";
 const InputWrapper = styled.section`
   padding: 10px 16px;
   font-size: 30px;
-        background: rgb(251,251,251);
+  background: rgb(251, 251, 251);
   label {
     display: flex;
-    span{
+    span {
       text-align: center;
     }
     input {
@@ -14,17 +14,19 @@ const InputWrapper = styled.section`
       line-height: 40px;
       flex-grow: 1;
       overflow: hidden;
-      background: rgb(251,251,251);
+      background: rgb(251, 251, 251);
     }
   }
 `;
-
-export default function InputMoney() {
+type Props = {
+  outPut: string;
+};
+export default function InputMoney(props: Props) {
   return (
     <InputWrapper>
       <label>
         <span>￥</span>
-        <input type="text" />
+        <input type="text" value={props.outPut} disabled/>
       </label>
     </InputWrapper>
   );
