@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link} from "react-router-dom";
 
 const NoteStyle = styled.section`
-  padding: 10px 16px;
+  padding: 0 16px 10px 16px;
   a {
     background: rgb(255, 255, 255);
     font-size: 14px;
