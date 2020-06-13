@@ -14,10 +14,10 @@ const BackButtonStyle = styled.section`
     }
   }
 `;
-export default function BackButton() {
+export default function BackButton(props: {onChange: ()=>void}) {
   return (
     <BackButtonStyle>
-      <button>
+      <button onClick={()=>props.onChange()}>
         <Icon name="back" />
       </button>
     </BackButtonStyle>

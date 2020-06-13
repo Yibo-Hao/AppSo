@@ -17,7 +17,7 @@ const MoneyWrapper = styled.div`
   border-radius: 8px;
   background: rgb(251, 251, 251);
 `;
-export default function Money() {
+export default function Money(props: {onChange: ()=>void}) {
   const [selected, setSelected] = useState({
     tag: "服饰" as string,
     type: "-" as "-" | "+",
@@ -33,7 +33,7 @@ export default function Money() {
   console.log(selected);
   return (
     <MoneyWrapper>
-      <BackButton />
+      <BackButton onChange={()=>{props.onChange()}}/>
       <TypesDate
         type={selected.type}
         onChange={type => {

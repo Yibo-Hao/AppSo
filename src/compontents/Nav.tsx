@@ -76,7 +76,7 @@ export default function Nav() {
             </LinkStyle>
           </div>
               :
-              <Money/>
+              <Money onChange={()=>{setMoneyState(!moneyState)}}/>
           }
         </li>
         <li>
