@@ -10,6 +10,7 @@ const NumberPadStyle = styled.section`
     line-height: 64px;
     border-radius: 6px;
     box-shadow: inset 0 0 0 4px rgb(251, 251, 251);
+    touch-action: manipulation;
   }
   .OK {
     line-height: 192px;
