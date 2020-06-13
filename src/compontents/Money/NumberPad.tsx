@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import Icon from "../Icon";
 const NumberPadStyle = styled.section`
@@ -22,8 +22,13 @@ const NumberPadStyle = styled.section`
     width: 50%;
   }
 `;
-export default function NumberPad() {
-  const [outPut, _setOutPut] = useState("");
+type Props = {
+    outPut: string;
+    onChange: (outPut: string) => void;
+};
+export default function NumberPad(props: Props) {
+  const [outPut, _setOutPut] = useState(props.outPut);
+  useEffect(()=>{props.onChange(outPut)},[outPut])
   const setOutPut = (outPut: string) => {
     if (outPut.length > 14) {
       outPut = outPut.slice(0, 14);
