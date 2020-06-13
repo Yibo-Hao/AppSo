@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import Icon from "../Icon";
-import { createBrowserHistory } from "history";
-let history = createBrowserHistory();
 const NoteWrapper = styled.div`
   height: 100vh;
   background: rgba(0, 0, 0, 0.15);
@@ -53,18 +51,18 @@ type Props = {
 };
 const Note = (props: Props) => {
   let [noteValue, setNoteValue] = useState<string>(props.note);
+  let [noteState, setNoteState] = useState<boolean>(true);
   const onLimit = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length <= 15)
-      setNoteValue(noteValue + e.target.value);
+    if (e.target.value.length <= 15) setNoteValue(noteValue + e.target.value);
   };
-  return (
+  return noteState ? (
     <NoteWrapper>
       <div className="note">
         <div className="nav">
           <div
             className="back"
             onClick={() => {
-              history.go(0);
+              setNoteState(!noteState);
             }}
           >
             <Icon name="right" />
@@ -74,6 +72,7 @@ const Note = (props: Props) => {
             className="ok"
             onClick={() => {
               props.onChange(noteValue);
+              setNoteState(!noteState);
             }}
           >
             确定
@@ -88,6 +87,6 @@ const Note = (props: Props) => {
         <div className="limit">{noteValue.length}/15</div>
       </div>
     </NoteWrapper>
-  );
+  ) : null;
 };
 export default Note;

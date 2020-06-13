@@ -21,7 +21,12 @@ export default function NoteMoney(props: Props) {
     setNoteState(!noteState);
   };
   if (noteState) {
-    return <Note note={props.note} onChange={props.onChange} />;
+    return (
+        <NoteStyle>
+          <button onClick={onClickButton}>添加备注</button>
+          <Note note={props.note} onChange={props.onChange} />
+        </NoteStyle>
+    )
   } else {
     return (
       <NoteStyle>
