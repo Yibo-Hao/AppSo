@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 
 const TypeStyle = styled.section`
@@ -41,10 +41,16 @@ const TypeDateStyleWrapper = styled.section`
   padding: 5px 16px;
   color: rgb(189, 189, 189);
 `;
-export default function TypesDate() {
-  const [typeList] = useState<("-"|"+")[]>(["-", "+"]);
-  const [type, setType] = useState("-");
-    return (
+type Props = {
+  type: "-" | "+";
+  onChange: (type: "-" | "+") => void;
+};
+
+export default function TypesDate(props: Props) {
+  const [typeList] = useState<("-" | "+")[]>(["-", "+"]);
+  const [selectedType, setSelectedType] = useState<("-" | "+")>(props.type);
+  useEffect(()=>{props.onChange(selectedType)},[selectedType])
+  return (
     <TypeDateStyleWrapper>
       <TypeStyle>
         <ul>
@@ -52,9 +58,9 @@ export default function TypesDate() {
             return (
               <li
                 key={c}
-                className={type === c ? "selected" : ""}
+                className={selectedType === c ? "selected" : ""}
                 onClick={() => {
-                  setType(c);
+                  setSelectedType(c);
                 }}
               >
                 {c === "-" ? "支出" : "收入"}
