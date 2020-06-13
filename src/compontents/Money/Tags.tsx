@@ -3,23 +3,43 @@ import styled from "styled-components";
 import Icon from "../Icon";
 
 const TagsStyle = styled.section`
-  padding: 10px 16px;
+  padding: 10px 16px 0 16px;
   ul {
     border-top: 0.5px solid rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: row;
+    padding-top: 5px;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
     &::-webkit-scrollbar {
-      width: 0;
+      display: none;
     }
     li {
       height: 70px;
-      line-height: 70px;
       padding: 0 8px;
+      &:first-child {
+        padding-left: 0;
+      }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      > .icon {
+        font-size: 25px;
+        padding: 2px 4px;
+        border-radius: 50%;
+      }
+      > .content {
+        padding-top: 10px;
+        font-size: 10px;
+        font-weight: 200;
+      }
       &.selected {
-        background: rgb(62, 181, 117);
+        > .icon {
+          background: rgb(62, 181, 117);
+          color: white;
+        }
       }
     }
   }
@@ -84,14 +104,20 @@ export default function TagsMoney(props: Props) {
             key={tag}
             onClick={() => {
               onToggleTag(tag);
-              console.log(iconChose(tag));
             }}
           >
-            <Icon name={iconChose(tag)} />
-            {tag}
+            <div className="icon">
+              <Icon name={iconChose(tag)} />
+            </div>
+            <span className="content">{tag}</span>
           </li>
         ))}
-        <li onClick={onAddTag}>新增标签</li>
+        <li onClick={onAddTag}>
+          <div className="icon">
+            <Icon name="add" />
+          </div>
+          <span className="content">新增标签</span>
+        </li>
       </ul>
     </TagsStyle>
   );
