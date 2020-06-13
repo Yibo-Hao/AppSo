@@ -7,17 +7,26 @@ import TagsMoney from "../compontents/Money/Tags";
 import NoteButton from "../compontents/Money/NoteButton";
 import NumberPad from "../compontents/Money/NumberPad";
 const MoneyWrapper = styled.div`
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.15);
   position: absolute;
-  width: 100%;
-  bottom: 0;
+  top: 0;
   left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 8px;
-  background: rgb(251, 251, 251);
+  width: 100%;
+  > .content {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    background: rgb(251, 251, 251);
+  }
 `;
-export default function Money(props: {onChange: ()=>void}) {
+export default function Money(props: { onChange: () => void }) {
   const [selected, setSelected] = useState({
     tag: "服饰" as string,
     type: "-" as "-" | "+",
@@ -33,32 +42,38 @@ export default function Money(props: {onChange: ()=>void}) {
   console.log(selected);
   return (
     <MoneyWrapper>
-      <BackButton onChange={()=>{props.onChange()}}/>
-      <TypesDate
-        type={selected.type}
-        onChange={type => {
-          onChange({ type });
-        }}
-      />
-      <InputMoney outPut={selected.outPut} />
-      <TagsMoney
-        selected={selected.tag}
-        onChange={tag => {
-          onChange({ tag });
-        }}
-      />
-      <NoteButton
-        note={selected.note}
-        onChange={note => {
-          onChange({ note });
-        }}
-      />
-      <NumberPad
-        outPut={selected.outPut}
-        onChange={outPut => {
-          onChange({ outPut });
-        }}
-      />
+      <div className="content">
+        <BackButton
+          onChange={() => {
+            props.onChange();
+          }}
+        />
+        <TypesDate
+          type={selected.type}
+          onChange={type => {
+            onChange({ type });
+          }}
+        />
+        <InputMoney outPut={selected.outPut} />
+        <TagsMoney
+          selected={selected.tag}
+          onChange={tag => {
+            onChange({ tag });
+          }}
+        />
+        <NoteButton
+          note={selected.note}
+          onChange={note => {
+            onChange({ note });
+          }}
+        />
+        <NumberPad
+          outPut={selected.outPut}
+          onChange={outPut => {
+            onChange({ outPut });
+          }}
+        />
+      </div>
     </MoneyWrapper>
   );
 }

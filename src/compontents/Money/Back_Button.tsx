@@ -4,6 +4,7 @@ import Icon from "../Icon";
 
 const BackButtonStyle = styled.section`
   align-self: flex-start;
+  padding-top: 10px;
   > button {
     font-size: 22px;
     background: rgb(251, 251, 251);
