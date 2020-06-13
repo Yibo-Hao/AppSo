@@ -6,11 +6,9 @@ import "./style/reset.scss"
 import App from "./App";
 
 ReactDOM.render(
-  <React.StrictMode>
     <Router>
       <App />
-    </Router>
-  </React.StrictMode>,
+    </Router>,
   document.getElementById("root")
 );
 serviceWorker.unregister();
