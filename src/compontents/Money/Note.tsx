@@ -14,7 +14,6 @@ const NoteWrapper = styled.div`
     bottom: 0;
     left: 0;
     width: 100%;
-    border: 1px solid red;
     font-size: 16px;
     padding: 16px;
     > .nav {
