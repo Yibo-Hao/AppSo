@@ -1,5 +1,6 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Icon from "../Icon";
 
 const TagsStyle = styled.section`
   padding: 10px 16px;
@@ -33,9 +34,17 @@ export default function TagsMoney(props: Props) {
     "餐饮",
     "交通",
     "住房",
-    "学习",
-    "旅游"
+    "借贷",
+    "工资"
   ]);
+  const tagsHash: { [propName: string]: string } = {
+    shop: "服饰",
+    eat: "餐饮",
+    travel: "交通",
+    live: "住房",
+    loan: "借贷",
+    salary: "工资"
+  };
   const [selectedTag, setSelectedTag] = useState<string>(props.selected);
   const onAddTag = () => {
     const name = window.prompt("请填写类型名");
@@ -48,14 +57,24 @@ export default function TagsMoney(props: Props) {
   const onToggleTag = (tag: string) => {
     const index = selectedTag.indexOf(tag);
     if (index >= 0) {
-      setSelectedTag('');
+      setSelectedTag("");
     } else {
       setSelectedTag(tag);
     }
   };
   const getSelectedClass = (tag: string) =>
     selectedTag.indexOf(tag) >= 0 ? "selected" : "";
-  useEffect(()=>{props.onChange(selectedTag)},[selectedTag])
+  useEffect(() => {
+    props.onChange(selectedTag);
+  }, [selectedTag]);
+  const iconChose = (tag: string) => {
+    for (let i in tagsHash) {
+      if (tagsHash[i] === tag) {
+        return `${i}`;
+      }
+    }
+    return "wait";
+  };
   return (
     <TagsStyle>
       <ul>
@@ -65,8 +84,10 @@ export default function TagsMoney(props: Props) {
             key={tag}
             onClick={() => {
               onToggleTag(tag);
+              console.log(iconChose(tag));
             }}
           >
+            <Icon name={iconChose(tag)} />
             {tag}
           </li>
         ))}
