@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React  from "react";
 import styled from "styled-components";
-import Note from "./Note";
+import { Link} from "react-router-dom";
 
 const NoteStyle = styled.section`
   padding: 10px 16px;
-  button {
+  a {
     background: rgb(255, 255, 255);
     font-size: 14px;
     color: rgb(87, 107, 149);
@@ -12,13 +12,9 @@ const NoteStyle = styled.section`
   }
 `;
 export default function NoteMoney() {
-  let [noteOpen, setNoteOpen] = useState(false);
-  const onNote = () => {
-    setNoteOpen(!noteOpen);
-  };
   return (
     <NoteStyle>
-      <button onClick={onNote}>添加备注</button>
+      <Link to={`/money/note`}>添加备注</Link>
     </NoteStyle>
   );
 }
