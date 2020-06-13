@@ -5,8 +5,18 @@ require("../assets/add.svg");
 require("../assets/diary.svg");
 require("../assets/more.svg");
 require("../assets/statistic.svg");
-require("../assets/back.svg")
-require("../assets/delete.svg")
+require("../assets/back.svg");
+
+require("../assets/eat.svg");
+require("../assets/live.svg");
+require("../assets/loan.svg");
+require("../assets/delete.svg");
+require("../assets/right.svg");
+require("../assets/wait.svg");
+require("../assets/shop.svg");
+require("../assets/travel.svg");
+require("../assets/salary.svg");
+
 const SvgStyle = styled.svg`
   width: 1em;
   height: 1em;
