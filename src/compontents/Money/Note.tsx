@@ -33,8 +33,9 @@ const NoteWrapper = styled.div`
     }
     > input {
       overflow: hidden;
-      padding: 14px 8px 20px 0;
+      padding: 14px 8px 8px 0;
       width: 100%;
+      font-size: 18px;
       box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
     }
     > .limit {
@@ -45,12 +46,16 @@ const NoteWrapper = styled.div`
 `;
 const Note = () => {
   const [noteValue, setNoteValue] = useState<string>("");
+  const onLimit = (e: React.ChangeEvent<HTMLInputElement>)=>{
+    if (e.target.value.length<=15)
+    setNoteValue(e.target.value);
+  }
   return (
     <NoteWrapper>
       <div className="note">
         <div className="nav">
           <div className="back">
-            <Icon name="delete" />
+            <Icon name="right" />
           </div>
           <div className="content">请添加备注</div>
           <div className="ok">确定</div>
@@ -59,11 +64,9 @@ const Note = () => {
           type="text"
           placeholder="请输入备注内容"
           value={noteValue}
-          onChange={e => {
-            setNoteValue(e.target.value);
-          }}
+          onChange={onLimit}
         />
-        <div className="limit">0/15</div>
+        <div className="limit">{noteValue.length}/15</div>
       </div>
     </NoteWrapper>
   );
