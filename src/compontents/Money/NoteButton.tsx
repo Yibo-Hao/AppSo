@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Note from "./Note";
 
 const NoteStyle = styled.section`
+  align-self: flex-start;
   padding: 0 16px 10px 16px;
   button {
     background: rgb(255, 255, 255);
@@ -22,11 +23,11 @@ export default function NoteMoney(props: Props) {
   };
   if (noteState) {
     return (
-        <NoteStyle>
-          <button onClick={onClickButton}>添加备注</button>
-          <Note note={props.note} onChange={props.onChange} />
-        </NoteStyle>
-    )
+      <NoteStyle>
+        <button onClick={onClickButton}>添加备注</button>
+        <Note note={props.note} onChange={props.onChange} />
+      </NoteStyle>
+    );
   } else {
     return (
       <NoteStyle>

@@ -15,6 +15,7 @@ const InputWrapper = styled.section`
       vertical-align: bottom;
       flex-grow: 1;
       overflow: hidden;
+      color: black;
       background: rgb(251, 251, 251);
     }
   }
