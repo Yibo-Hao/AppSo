@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Note from "./Note";
+import Modal from  "../Modal"
 
 const NoteStyle = styled.section`
   align-self: flex-start;
@@ -14,7 +14,7 @@ const NoteStyle = styled.section`
 `;
 type Props = {
   note: string;
-  onChange: (note: string) => void;
+  onChange: (value: string) => void;
 };
 
 export default function NoteMoney(props: Props) {
@@ -28,7 +28,15 @@ export default function NoteMoney(props: Props) {
   return noteState ? (
     <NoteStyle>
       <button onClick={openNote}>添加备注</button>
-      <Note note={props.note} onChange={props.onChange} closeNote={closeNote} />
+      <Modal
+          initialValue=""
+          placeholder="请输入备注内容"
+          close={closeNote}
+          empty={true}
+          limit={35}
+          title="请添加备注"
+          onChange={value => {props.onChange(value)}}
+      />
     </NoteStyle>
   ) : (
     <NoteStyle>

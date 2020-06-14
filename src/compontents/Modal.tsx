@@ -49,7 +49,7 @@ const NoteWrapper = styled.div`
   }
 `;
 type Props = {
-  value: string;
+  initialValue: string;
   onChange: (value: string) => void;
   close: ()=>void;
   limit: number;
@@ -58,7 +58,7 @@ type Props = {
   placeholder: string;
 };
 const Note: React.FunctionComponent<Props> = props => {
-  let [value, setValue] = useState<string>(props.value);
+  let [value, setValue] = useState<string>(props.initialValue);
   const limit = props.limit;
   const close = props.close;
   const placeholder = props.placeholder;

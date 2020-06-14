@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Icon from "../Icon";
-
+import Modal from "../Modal";
 const TagsStyle = styled.section`
   padding: 10px 16px 0 16px;
   ul {
@@ -49,45 +49,31 @@ type Props = {
   onChange: (tag: string) => void;
 };
 export default function TagsMoney(props: Props) {
-  const [tags, setTags] = useState<string[]>([
-    "服饰",
-    "餐饮",
-    "交通",
-    "住房",
-    "借贷",
-    "工资"
-  ]);
+  const [tags, setTags] = useState<string[]>(["服饰", "餐饮", "交通", "住房"]);
+  const [state, setState] = useState<boolean>(false);
   const tagsHash: { [propName: string]: string } = {
     shop: "服饰",
     eat: "餐饮",
     travel: "交通",
-    live: "住房",
-    loan: "借贷",
-    salary: "工资"
+    live: "住房"
   };
   const [selectedTag, setSelectedTag] = useState<string>(props.selected);
-  const onAddTag = () => {
-    const name = window.prompt("请填写类型名");
-    if (name && name.length <= 4) {
-      setTags([...tags, name]);
-    } else {
-      alert("长度小于4");
-    }
+  const open = () => {
+    setState(true);
   };
   const onToggleTag = (tag: string) => {
-    const index = selectedTag.indexOf(tag);
-    if (index >= 0) {
+    if (tag === selectedTag) {
       setSelectedTag("");
     } else {
       setSelectedTag(tag);
     }
   };
   const getSelectedClass = (tag: string) =>
-    selectedTag.indexOf(tag) >= 0 ? "selected" : "";
+    tag === selectedTag ? "selected" : "";
   useEffect(() => {
     props.onChange(selectedTag);
   }, [selectedTag]);
-  const iconChose = (tag: string) => {
+  const getIcon = (tag: string) => {
     for (let i in tagsHash) {
       if (tagsHash[i] === tag) {
         return `${i}`;
@@ -107,17 +93,30 @@ export default function TagsMoney(props: Props) {
             }}
           >
             <div className="icon">
-              <Icon name={iconChose(tag)} />
+              <Icon name={getIcon(tag)} />
             </div>
             <span className="content">{tag}</span>
           </li>
         ))}
-        <li onClick={onAddTag}>
+        <li onClick={open}>
           <div className="icon">
             <Icon name="add" />
           </div>
           <span className="content">新增标签</span>
         </li>
+        {state ? (
+          <Modal
+              initialValue=""
+            placeholder="不能与已有类型名重复"
+            close={() => {
+              setState(false);
+            }}
+            empty={false}
+            limit={5}
+            title="请输入类别名"
+            onChange={value => {setTags([...tags,value])}}
+          />
+        ) : null}
       </ul>
     </TagsStyle>
   );
