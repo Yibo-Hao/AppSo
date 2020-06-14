@@ -16,23 +16,23 @@ type Props = {
   note: string;
   onChange: (note: string) => void;
 };
+
 export default function NoteMoney(props: Props) {
   const [noteState, setNoteState] = useState(false);
-  const onClickButton = () => {
-    setNoteState(!noteState);
+  const openNote = () => {
+    setNoteState(true);
   };
-  if (noteState) {
-    return (
-      <NoteStyle>
-        <button onClick={onClickButton}>添加备注</button>
-        <Note note={props.note} onChange={props.onChange} />
-      </NoteStyle>
-    );
-  } else {
-    return (
-      <NoteStyle>
-        <button onClick={onClickButton}>添加备注</button>
-      </NoteStyle>
-    );
-  }
+  const closeNote = () => {
+    setNoteState(false);
+  };
+  return noteState ? (
+    <NoteStyle>
+      <button onClick={openNote}>添加备注</button>
+      <Note note={props.note} onChange={props.onChange} closeNote={closeNote} />
+    </NoteStyle>
+  ) : (
+    <NoteStyle>
+      <button onClick={openNote}>添加备注</button>
+    </NoteStyle>
+  );
 }
