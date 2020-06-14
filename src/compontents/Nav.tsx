@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Icon from "./Icon";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Money from "../views/Money";
 const NavStyle = styled.nav`
@@ -33,7 +33,7 @@ const LinkStyle = styled.div`
 `;
 
 export default function Nav() {
-  let [moneyState,setMoneyState] = useState(true)
+  let [moneyState, setMoneyState] = useState(true);
   return (
     <NavStyle>
       <ul>
@@ -54,7 +54,7 @@ export default function Nav() {
           <NavLink
             to="/statistic"
             activeStyle={{
-              color: "blue",
+              color: "blue"
             }}
           >
             <LinkStyle>
@@ -64,20 +64,23 @@ export default function Nav() {
           </NavLink>
         </li>
         <li>
-          {
-            moneyState
-              ?
-            <div onClick={() => {
-            setMoneyState(!moneyState)
-          }}>
+          <div
+            onClick={() => {
+              setMoneyState(!moneyState);
+            }}
+          >
             <LinkStyle>
-              <Icon name="add"/>
+              <Icon name="add" />
               <span>记账</span>
             </LinkStyle>
           </div>
-              :
-              <Money onChange={()=>{setMoneyState(!moneyState)}}/>
-          }
+          {moneyState ? (
+            <Money
+              onChange={() => {
+                setMoneyState(!moneyState);
+              }}
+            />
+          ) : null}
         </li>
         <li>
           <NavLink
