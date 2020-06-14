@@ -51,21 +51,22 @@ const NoteWrapper = styled.div`
 type Props = {
   note: string;
   onChange: (note: string) => void;
+  closeNote: ()=>void;
 };
-const Note = (props: Props) => {
+const Note: React.FunctionComponent<Props> = (props) => {
   let [noteValue, setNoteValue] = useState<string>(props.note);
-  let [noteState, setNoteState] = useState<boolean>(true);
+  const closeNote = props.closeNote
   const onLimit = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length <= 35) setNoteValue(e.target.value);
   };
-  return noteState ? (
+  return  (
     <NoteWrapper>
       <div className="note">
         <div className="nav">
           <div
             className="back"
             onClick={() => {
-              setNoteState(!noteState);
+              closeNote();
             }}
           >
             <Icon name="right" />
@@ -75,7 +76,7 @@ const Note = (props: Props) => {
             className="ok"
             onClick={() => {
               props.onChange(noteValue);
-              setNoteState(!noteState);
+              closeNote();
             }}
           >
             确定
@@ -90,6 +91,6 @@ const Note = (props: Props) => {
         <div className="limit">{noteValue.length}/35</div>
       </div>
     </NoteWrapper>
-  ) : null;
+  )
 };
 export default Note;
