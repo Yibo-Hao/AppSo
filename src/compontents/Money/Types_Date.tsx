@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-
-const TypeStyle = styled.section`
-  ul {
+const TypeDateStyleWrapper = styled.section`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 16px;
+  color: rgb(189, 189, 189);
+  >.typeStyle{
+      ul {
     display: flex;
     li {
       background: rgb(241, 241, 241);
@@ -21,10 +25,9 @@ const TypeStyle = styled.section`
       }
     }
   }
-`;
-
-const DateStyle = styled.section`
-  div {
+  }
+  >.dateStyle{
+    div {
     background: rgb(241, 241, 241);
     border-radius: 16px;
     line-height: 20px;
@@ -33,14 +36,9 @@ const DateStyle = styled.section`
     margin: 10px 0;
     color: #000;
   }
+  }
 `;
 
-const TypeDateStyleWrapper = styled.section`
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 16px;
-  color: rgb(189, 189, 189);
-`;
 type Props = {
   type: "-" | "+";
   onChange: (type: "-" | "+") => void;
@@ -52,7 +50,7 @@ export default function TypesDate(props: Props) {
   useEffect(()=>{props.onChange(selectedType)},[selectedType])
   return (
     <TypeDateStyleWrapper>
-      <TypeStyle>
+      <section className="typeStyle">
         <ul>
           {typeList.map(c => {
             return (
@@ -68,10 +66,10 @@ export default function TypesDate(props: Props) {
             );
           })}
         </ul>
-      </TypeStyle>
-      <DateStyle>
+      </section>
+      <section className="dateStyle">
         <div>6月4日</div>
-      </DateStyle>
+      </section>
     </TypeDateStyleWrapper>
   );
 }
