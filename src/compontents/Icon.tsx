@@ -6,7 +6,6 @@ require("../assets/diary.svg");
 require("../assets/more.svg");
 require("../assets/statistic.svg");
 require("../assets/back.svg");
-
 require("../assets/eat.svg");
 require("../assets/live.svg");
 require("../assets/loan.svg");
@@ -16,7 +15,9 @@ require("../assets/wait.svg");
 require("../assets/shop.svg");
 require("../assets/travel.svg");
 require("../assets/salary.svg");
-
+require("../assets/gift.svg");
+require("../assets/business.svg");
+require("../assets/award.svg");
 const SvgStyle = styled.svg`
   width: 1em;
   height: 1em;
