@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Icon from "../Icon";
 import Modal from "../Modal";
 import { ThemeContext } from "../../views/Money";
+import { useTags } from "./useTags";
 const TagsStyle = styled.section<TagsStyleProps>`
   padding: 10px 16px 0 16px;
   ul {
@@ -53,18 +54,7 @@ type TagsStyleProps = {
   iconBackground: string;
 };
 export default function TagsMoney(props: Props) {
-  const [costTags, setCostTags] = useState<string[]>([
-    "服饰",
-    "餐饮",
-    "交通",
-    "住房"
-  ]);
-  const [incomeTags, setIncomeTags] = useState<string[]>([
-    "生意",
-    "工资",
-    "奖金",
-    "红包"
-  ]);
+  const { costTags, setIncomeTags, setCostTags, incomeTags } = useTags();
   const theme = useContext(ThemeContext);
   const [state, setState] = useState<boolean>(false);
   const tagsHash: { [propName: string]: string } = {
@@ -114,11 +104,11 @@ export default function TagsMoney(props: Props) {
   const onChange = (value: string) => {
     const setCost = () => {
       if (value in costTags) setCostTags([...costTags, value]);
-      else alert("请重新输入类别名")
+      else alert("请重新输入类别名");
     };
     const setIncome = () => {
       if (value in incomeTags) setIncomeTags([...incomeTags, value]);
-      else alert("请重新输入类别名")
+      else alert("请重新输入类别名");
     };
     theme.name === "cost" ? setCost() : setIncome();
   };
