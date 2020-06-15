@@ -93,6 +93,13 @@ export default function TagsMoney(props: Props) {
   useEffect(() => {
     props.onChange(selectedTag);
   }, [selectedTag]);
+  useEffect(() => {
+    if (theme.name === "cost") {
+      setSelectedTag("服饰");
+    } else {
+      setSelectedTag("生意");
+    }
+  }, [theme.name]);
   const getIcon = (tag: string) => {
     for (let i in tagsHash) {
       if (tagsHash[i] === tag) {
