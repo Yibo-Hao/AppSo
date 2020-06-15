@@ -13,7 +13,7 @@ export default function App() {
       <Route exact path={"/assets"}>
         <Assets />
       </Route>
-      <Route exact path={"/statistic"}>
+      <Route path={"/statistic"}>
         <Statistic />
       </Route>
       <Route exact path={"/diary"}>

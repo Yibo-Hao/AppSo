@@ -33,7 +33,7 @@ const LinkStyle = styled.div`
 `;
 
 export default function Nav() {
-  let [moneyState, setMoneyState] = useState(true);
+  let [moneyState, setMoneyState] = useState(false);
   return (
     <NavStyle>
       <ul>
@@ -66,7 +66,7 @@ export default function Nav() {
         <li>
           <div
             onClick={() => {
-              setMoneyState(!moneyState);
+              setMoneyState(true);
             }}
           >
             <LinkStyle>
@@ -77,7 +77,7 @@ export default function Nav() {
           {moneyState ? (
             <Money
               onChange={() => {
-                setMoneyState(!moneyState);
+                setMoneyState(false);
               }}
             />
           ) : null}
