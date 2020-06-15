@@ -1,7 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Icon from "../Icon";
-const NumberPadStyle = styled.section`
+import { ThemeContext } from "../../views/Money";
+type NumberPadStyleProps = {
+  okBackground: string;
+};
+const NumberPadStyle = styled.section<NumberPadStyleProps>`
   button {
     width: 25%;
     background: rgb(255, 255, 255);
@@ -17,19 +21,22 @@ const NumberPadStyle = styled.section`
     float: right;
     color: white;
     font-size: 18px;
-    background: rgb(157, 216, 184);
+    background: ${props => props.okBackground};
   }
   .zero {
     width: 50%;
   }
 `;
 type Props = {
-    outPut: string;
-    onChange: (outPut: string) => void;
+  outPut: string;
+  onChange: (outPut: string) => void;
 };
 export default function NumberPad(props: Props) {
+  const theme = useContext(ThemeContext);
   const [outPut, _setOutPut] = useState(props.outPut);
-  useEffect(()=>{props.onChange(outPut)},[outPut])
+  useEffect(() => {
+    props.onChange(outPut);
+  }, [outPut]);
   const setOutPut = (outPut: string) => {
     if (outPut.length > 14) {
       outPut = outPut.slice(0, 14);
@@ -66,7 +73,7 @@ export default function NumberPad(props: Props) {
     setOutPut(outPut.slice(0, outPut.length - 1));
   };
   return (
-    <NumberPadStyle onClick={onClickNumber}>
+    <NumberPadStyle onClick={onClickNumber} okBackground={theme.ok.background}>
       <button>1</button>
       <button>2</button>
       <button>3</button>

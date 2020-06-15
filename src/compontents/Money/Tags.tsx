@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import Icon from "../Icon";
 import Modal from "../Modal";
-const TagsStyle = styled.section`
+import { ThemeContext } from "../../views/Money";
+const TagsStyle = styled.section<TagsStyleProps>`
   padding: 10px 16px 0 16px;
   ul {
     border-top: 0.5px solid rgba(0, 0, 0, 0.25);
@@ -37,7 +38,7 @@ const TagsStyle = styled.section`
       }
       &.selected {
         > .icon {
-          background: rgb(62, 181, 117);
+          background: ${props => props.iconBackground}
           color: white;
         }
       }
@@ -48,14 +49,33 @@ type Props = {
   selected: string;
   onChange: (tag: string) => void;
 };
+type TagsStyleProps = {
+  iconBackground: string;
+};
 export default function TagsMoney(props: Props) {
-  const [tags, setTags] = useState<string[]>(["服饰", "餐饮", "交通", "住房"]);
+  const [costTags, setCostTags] = useState<string[]>([
+    "服饰",
+    "餐饮",
+    "交通",
+    "住房"
+  ]);
+  const [incomeTags, setIncomeTags] = useState<string[]>([
+    "生意",
+    "工资",
+    "奖金",
+    "红包"
+  ]);
+  const theme = useContext(ThemeContext);
   const [state, setState] = useState<boolean>(false);
   const tagsHash: { [propName: string]: string } = {
     shop: "服饰",
     eat: "餐饮",
     travel: "交通",
-    live: "住房"
+    live: "住房",
+    business: "生意",
+    salary: "工资",
+    award: "奖金",
+    gift: "红包"
   };
   const [selectedTag, setSelectedTag] = useState<string>(props.selected);
   const open = () => {
@@ -82,9 +102,9 @@ export default function TagsMoney(props: Props) {
     return "wait";
   };
   return (
-    <TagsStyle>
+    <TagsStyle iconBackground={theme.icon.background}>
       <ul>
-        {tags.map(tag => (
+        {(theme.name === "cost" ? costTags : incomeTags).map(tag => (
           <li
             className={getSelectedClass(tag)}
             key={tag}
@@ -106,7 +126,7 @@ export default function TagsMoney(props: Props) {
         </li>
         {state ? (
           <Modal
-              initialValue=""
+            initialValue=""
             placeholder="不能与已有类型名重复"
             close={() => {
               setState(false);
@@ -114,7 +134,11 @@ export default function TagsMoney(props: Props) {
             empty={false}
             limit={5}
             title="请输入类别名"
-            onChange={value => {setTags([...tags,value])}}
+            onChange={value => {
+              theme.name === "cost"
+                ? setCostTags([...costTags, value])
+                : setIncomeTags([...incomeTags, value]);
+            }}
           />
         ) : null}
       </ul>
