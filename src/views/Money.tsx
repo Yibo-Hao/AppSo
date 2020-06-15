@@ -6,6 +6,7 @@ import InputMoney from "../compontents/Money/Input_Money";
 import TagsMoney from "../compontents/Money/Tags";
 import NoteButton from "../compontents/Money/NoteButton";
 import NumberPad from "../compontents/Money/NumberPad";
+import { themes } from "../compontents/Money/theme";
 const MoneyWrapper = styled.div`
   height: 100vh;
   background: rgba(0, 0, 0, 0.15);
@@ -26,6 +27,7 @@ const MoneyWrapper = styled.div`
     background: rgb(251, 251, 251);
   }
 `;
+const ThemeContext = React.createContext(themes.cost);
 export default function Money(props: { onChange: () => void }) {
   const [selected, setSelected] = useState({
     tag: "服饰" as string,
@@ -41,39 +43,44 @@ export default function Money(props: { onChange: () => void }) {
   };
   console.log(selected);
   return (
-    <MoneyWrapper>
-      <div className="content">
-        <BackButton
-          onChange={() => {
-            props.onChange();
-          }}
-        />
-        <TypesDate
-          type={selected.type}
-          onChange={type => {
-            onChange({ type });
-          }}
-        />
-        <InputMoney outPut={selected.outPut} />
-        <TagsMoney
-          selected={selected.tag}
-          onChange={tag => {
-            onChange({ tag });
-          }}
-        />
-        <NoteButton
-          note={selected.note}
-          onChange={note => {
-            onChange({ note });
-          }}
-        />
-        <NumberPad
-          outPut={selected.outPut}
-          onChange={outPut => {
-            onChange({ outPut });
-          }}
-        />
-      </div>
-    </MoneyWrapper>
+    <ThemeContext.Provider
+      value={selected.type === "-" ? themes.cost : themes.earn}
+    >
+      <MoneyWrapper>
+        <div className="content">
+          <BackButton
+            onChange={() => {
+              props.onChange();
+            }}
+          />
+          <TypesDate
+            type={selected.type}
+            onChange={type => {
+              onChange({ type });
+            }}
+          />
+          <InputMoney outPut={selected.outPut} />
+          <TagsMoney
+            selected={selected.tag}
+            onChange={tag => {
+              onChange({ tag });
+            }}
+          />
+          <NoteButton
+            note={selected.note}
+            onChange={note => {
+              onChange({ note });
+            }}
+          />
+          <NumberPad
+            outPut={selected.outPut}
+            onChange={outPut => {
+              onChange({ outPut });
+            }}
+          />
+        </div>
+      </MoneyWrapper>
+    </ThemeContext.Provider>
   );
 }
+export { ThemeContext };
