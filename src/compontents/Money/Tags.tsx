@@ -81,6 +81,9 @@ export default function TagsMoney(props: Props) {
   const open = () => {
     setState(true);
   };
+  const close = () => {
+    setState(false);
+  };
   const onToggleTag = (tag: string) => {
     if (tag === selectedTag) {
       setSelectedTag("");
@@ -107,6 +110,17 @@ export default function TagsMoney(props: Props) {
       }
     }
     return "wait";
+  };
+  const onChange = (value: string) => {
+    const setCost = () => {
+      if (value in costTags) setCostTags([...costTags, value]);
+      else alert("请重新输入类别名")
+    };
+    const setIncome = () => {
+      if (value in incomeTags) setIncomeTags([...incomeTags, value]);
+      else alert("请重新输入类别名")
+    };
+    theme.name === "cost" ? setCost() : setIncome();
   };
   return (
     <TagsStyle iconBackground={theme.icon.background}>
@@ -135,17 +149,11 @@ export default function TagsMoney(props: Props) {
           <Modal
             initialValue=""
             placeholder="不能与已有类型名重复"
-            close={() => {
-              setState(false);
-            }}
+            close={close}
             empty={false}
             limit={5}
             title="请输入类别名"
-            onChange={value => {
-              theme.name === "cost"
-                ? setCostTags([...costTags, value])
-                : setIncomeTags([...incomeTags, value]);
-            }}
+            onChange={onChange}
           />
         ) : null}
       </ul>
