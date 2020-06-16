@@ -5,8 +5,8 @@ type TagsStyleProps = {
     height: string;
 };
 const TagsStyle = styled.div<TagsStyleProps>`
-  margin-top: 10px;
   overflow: auto;
+  padding: 10px 0;
   height: ${props => props.height};
   .cost {
     .costDiv {
