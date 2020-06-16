@@ -1,10 +1,12 @@
-import React, {
-  useEffect,
-  useRef,
-  useState
-} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Layout from "../compontents/Layout";
-import { Switch, Route, NavLink, useRouteMatch } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  NavLink,
+  useRouteMatch,
+  Redirect
+} from "react-router-dom";
 import styled from "styled-components";
 import Notfound from "./Notfound";
 import { TagsStatistic } from "../compontents/Statistic/TagsStatistic";
@@ -74,11 +76,14 @@ const Statistic: React.FunctionComponent = () => {
         </ul>
       </NavStyle>
       <Switch>
+        <Redirect exact from={`${path}/`} to={`${path}/tags`} />
         <Route exact path={`${path}/timeline`}>
           mouth timeline
         </Route>
         <Route exact path={`${path}/tags`}>
-          <TagsStatistic height={(window.screen.height-height).toString()+"px"} />
+          <TagsStatistic
+            height={(window.screen.height - height).toString() + "px"}
+          />
         </Route>
         <Route exact path={`${path}/analysis`}>
           year analysis
