@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import Icon from "./Icon";
-import React, { useState } from "react";
+import React, { useState} from "react";
 import styled from "styled-components";
 import Money from "../views/Money";
-const NavStyle = styled.nav`
+const NavStyle = styled.div`
   line-height: 24px;
   box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.25);
   background: #fff;
@@ -32,10 +32,10 @@ const LinkStyle = styled.div`
   }
 `;
 
-export default function Nav() {
+const Nav = React.forwardRef<HTMLDivElement,{}>((props,ref) => {
   let [moneyState, setMoneyState] = useState(false);
   return (
-    <NavStyle>
+    <NavStyle ref={ref}>
       <ul>
         <li>
           <NavLink
@@ -111,4 +111,5 @@ export default function Nav() {
       </ul>
     </NavStyle>
   );
-}
+})
+export default Nav;

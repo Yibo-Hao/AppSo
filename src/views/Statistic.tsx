@@ -1,9 +1,14 @@
-import React from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState
+} from "react";
 import Layout from "../compontents/Layout";
 import { Switch, Route, NavLink, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 import Notfound from "./Notfound";
-const NavStyle = styled.nav`
+import { TagsStatistic } from "../compontents/Statistic/TagsStatistic";
+const NavStyle = styled.div`
   line-height: 24px;
   box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.25);
   background: #fff;
@@ -19,11 +24,22 @@ const NavStyle = styled.nav`
     }
   }
 `;
-export default function Statistic() {
+
+const Statistic: React.FunctionComponent = () => {
   let { path, url } = useRouteMatch();
+  const [height, setHeight] = useState(0);
+  const divEl = useRef(null);
+  const divEl2 = useRef(null);
+  useEffect(() => {
+    let navHeight = (divEl.current! as HTMLDivElement).getBoundingClientRect()
+      .height;
+    let navHeight2 = (divEl2.current! as HTMLDivElement).getBoundingClientRect()
+      .height;
+    setHeight(navHeight + navHeight2);
+  }, []);
   return (
-    <Layout>
-      <NavStyle>
+    <Layout ref={divEl}>
+      <NavStyle ref={divEl2}>
         <ul>
           <li>
             <NavLink
@@ -62,7 +78,7 @@ export default function Statistic() {
           mouth timeline
         </Route>
         <Route exact path={`${path}/tags`}>
-          tags
+          <TagsStatistic height={(window.screen.height-height).toString()+"px"} />
         </Route>
         <Route exact path={`${path}/analysis`}>
           year analysis
@@ -73,4 +89,6 @@ export default function Statistic() {
       </Switch>
     </Layout>
   );
-}
+};
+
+export default Statistic;
