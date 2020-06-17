@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Icon from "./Icon";
 const NoteWrapper = styled.div`
   height: 100vh;
@@ -51,7 +51,7 @@ const NoteWrapper = styled.div`
 type Props = {
   initialValue: string;
   onChange: (value: string) => void;
-  close: ()=>void;
+  close: () => void;
   limit: number;
   title: string;
   empty: boolean;
@@ -65,19 +65,22 @@ const Note: React.FunctionComponent<Props> = props => {
   const title = props.title;
   const onChange = props.onChange;
   const empty = props.empty;
-  const onLimit = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length <= limit) setValue(e.target.value);
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
   };
-  const ok = ()=>{
-    if (!empty){
-      if (value === ''){
-        window.alert("不能为空")
-        return
+  const onInputLimit = (e: React.ChangeEvent<HTMLInputElement>)=>{
+    setValue(e.target.value.slice(0,limit));
+  }
+  const ok = () => {
+    if (!empty) {
+      if (value === "") {
+        window.alert("不能为空");
+        return;
       }
     }
     onChange(value);
     close();
-  }
+  };
   return (
     <NoteWrapper>
       <div className="note">
@@ -91,10 +94,7 @@ const Note: React.FunctionComponent<Props> = props => {
             <Icon name="right" />
           </div>
           <div className="content">{title}</div>
-          <div
-            className="ok"
-            onClick={ok}
-          >
+          <div className="ok" onClick={ok}>
             确定
           </div>
         </div>
@@ -102,7 +102,8 @@ const Note: React.FunctionComponent<Props> = props => {
           type="text"
           placeholder={placeholder}
           value={value}
-          onChange={onLimit}
+          onChange={onInputChange}
+          onBlur={onInputLimit}
         />
         <div className="limit">
           {value.length}/{limit}
