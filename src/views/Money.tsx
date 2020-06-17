@@ -30,7 +30,7 @@ const MoneyWrapper = styled.div`
 const ThemeContext = React.createContext(themes.cost);
 export default function Money(props: { close: () => void }) {
   const [selected, setSelected] = useState({
-    tag: "服饰" as string,
+    tagId: 1 as number,
     type: "-" as "-" | "+",
     note: "" as string,
     outPut: "" as string
@@ -41,7 +41,6 @@ export default function Money(props: { close: () => void }) {
       ...obj
     });
   };
-  console.log(selected);
   return (
     <ThemeContext.Provider
       value={selected.type === "-" ? themes.cost : themes.earn}
@@ -57,9 +56,9 @@ export default function Money(props: { close: () => void }) {
           />
           <InputMoney outPut={selected.outPut} />
           <TagsMoney
-            selected={selected.tag}
-            onChange={tag => {
-              onChange({ tag });
+            tagId={selected.tagId}
+            onChange={tagId => {
+              onChange({ tagId });
             }}
           />
           <NoteButton

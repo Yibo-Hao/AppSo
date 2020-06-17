@@ -53,23 +53,23 @@ const TagsStyle = styled.div<TagsStyleProps>`
 `;
 const TagsStatistic: React.FunctionComponent<{ height: string }> = props => {
   const { costTags, setIncomeTags, setCostTags, incomeTags } = useTags();
-  const { path, url } = useRouteMatch();
+  const { url } = useRouteMatch();
   return (
     <TagsStyle height={props.height}>
       <ol className="cost">
         {costTags.map(tag => (
-          <Link to={`${url}/` + tag}>
-            <div className="costDiv" key={tag}>
-              <li>{tag}</li>
+          <Link to={`${url}/` + tag}  key={tag.id}>
+            <div className="costDiv" >
+              <li>{tag.name}</li>
             </div>
           </Link>
         ))}
       </ol>
       <ol className="income">
         {incomeTags.map(tag => (
-          <Link to={`${url}/` + tag}>
-            <div className="incomeDiv" key={tag}>
-              <li key={tag}>{tag}</li>
+          <Link to={`${url}/` + tag}  key={tag.id}>
+            <div className="incomeDiv">
+              <li>{tag.name}</li>
             </div>
           </Link>
         ))}

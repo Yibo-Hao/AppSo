@@ -47,16 +47,19 @@ const TagsStyle = styled.section<TagsStyleProps>`
   }
 `;
 type Props = {
-  selected: string;
-  onChange: (tag: string) => void;
+  tagId: number;
+  onChange: (tagId: number) => void;
 };
 type TagsStyleProps = {
   iconBackground: string;
 };
+
 export default function TagsMoney(props: Props) {
-  const { costTags, setIncomeTags, setCostTags, incomeTags } = useTags();
-  const theme = useContext(ThemeContext);
   const [state, setState] = useState<boolean>(false);
+  const { costTags, setIncomeTags, setCostTags, incomeTags } = useTags();
+  console.log(costTags);
+  console.log(incomeTags);
+  const theme = useContext(ThemeContext);
   const tagsHash: { [propName: string]: string } = {
     shop: "服饰",
     eat: "餐饮",
@@ -67,31 +70,27 @@ export default function TagsMoney(props: Props) {
     award: "奖金",
     gift: "红包"
   };
-  const [selectedTag, setSelectedTag] = useState<string>(props.selected);
+  const [selectedTagId, setSelectedTagId] = useState<number>(props.tagId);
   const open = () => {
     setState(true);
   };
   const close = () => {
     setState(false);
   };
-  const onToggleTag = (tag: string) => {
-    if (tag === selectedTag) {
-      setSelectedTag("");
+  const onToggleTag = (tagId: number) => {
+    if (tagId === selectedTagId) {
+      setSelectedTagId(-1);
     } else {
-      setSelectedTag(tag);
+      setSelectedTagId(tagId);
     }
   };
-  const getSelectedClass = (tag: string) =>
-    tag === selectedTag ? "selected" : "";
+  const getSelectedClass = (tagId: number) =>
+    tagId === selectedTagId ? "selected" : "";
   useEffect(() => {
-    props.onChange(selectedTag);
-  }, [selectedTag]);
+    props.onChange(selectedTagId);
+  }, [selectedTagId]);
   useEffect(() => {
-    if (theme.name === "cost") {
-      setSelectedTag("服饰");
-    } else {
-      setSelectedTag("生意");
-    }
+    setSelectedTagId(1);
   }, [theme.name]);
   const getIcon = (tag: string) => {
     for (let i in tagsHash) {
@@ -103,12 +102,22 @@ export default function TagsMoney(props: Props) {
   };
   const onChange = (value: string) => {
     const setCost = () => {
-      if (value in costTags) setCostTags([...costTags, value]);
-      else alert("请重新输入类别名");
+      for (let i = 0; i < costTags.length; i++) {
+        if (costTags[i].name === value) {
+          alert("请重新输入类别名");
+          return;
+        }
+      }
+      setCostTags([...costTags, { id: Math.random(), name: value }]);
     };
     const setIncome = () => {
-      if (value in incomeTags) setIncomeTags([...incomeTags, value]);
-      else alert("请重新输入类别名");
+      for (let i = 0; i < incomeTags.length; i++) {
+        if (incomeTags[i].name === value) {
+          alert("请重新输入类别名");
+          return;
+        }
+      }
+      setIncomeTags([...incomeTags, { id: Math.random(), name: value }]);
     };
     theme.name === "cost" ? setCost() : setIncome();
   };
@@ -117,16 +126,16 @@ export default function TagsMoney(props: Props) {
       <ul>
         {(theme.name === "cost" ? costTags : incomeTags).map(tag => (
           <li
-            className={getSelectedClass(tag)}
-            key={tag}
+            className={getSelectedClass(tag.id)}
+            key={tag.id}
             onClick={() => {
-              onToggleTag(tag);
+              onToggleTag(tag.id);
             }}
           >
             <div className="icon">
-              <Icon name={getIcon(tag)} />
+              <Icon name={getIcon(tag.name)} />
             </div>
-            <span className="content">{tag}</span>
+            <span className="content">{tag.name}</span>
           </li>
         ))}
         <li onClick={open}>
