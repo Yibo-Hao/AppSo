@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import Icon from "../Icon";
-import Modal from "../Modal";
+import Modal from "../../lib/Modal";
 import { ThemeContext } from "../../views/Money";
 import { useTags } from "./useTags";
 const TagsStyle = styled.section<TagsStyleProps>`

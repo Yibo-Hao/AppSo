@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Modal from  "../Modal"
+import Modal from  "../../lib/Modal"
 
 const NoteStyle = styled.section`
   align-self: flex-start;

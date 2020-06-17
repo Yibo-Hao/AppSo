@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import Icon from "./Icon";
+import Icon from "../compontents/Icon";
 const NoteWrapper = styled.div`
   height: 100vh;
   background: rgba(0, 0, 0, 0.15);
