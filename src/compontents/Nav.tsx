@@ -34,6 +34,9 @@ const LinkStyle = styled.div`
 
 const Nav = React.forwardRef<HTMLDivElement,{}>((props,ref) => {
   let [moneyState, setMoneyState] = useState(false);
+  const closeMoney = ()=>{
+    setMoneyState(false)
+  }
   return (
     <NavStyle ref={ref}>
       <ul>
@@ -76,9 +79,7 @@ const Nav = React.forwardRef<HTMLDivElement,{}>((props,ref) => {
           </div>
           {moneyState ? (
             <Money
-              onChange={() => {
-                setMoneyState(false);
-              }}
+              close={closeMoney}
             />
           ) : null}
         </li>

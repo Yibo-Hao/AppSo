@@ -28,7 +28,7 @@ const MoneyWrapper = styled.div`
   }
 `;
 const ThemeContext = React.createContext(themes.cost);
-export default function Money(props: { onChange: () => void }) {
+export default function Money(props: { close: () => void }) {
   const [selected, setSelected] = useState({
     tag: "服饰" as string,
     type: "-" as "-" | "+",
@@ -48,11 +48,7 @@ export default function Money(props: { onChange: () => void }) {
     >
       <MoneyWrapper>
         <div className="content">
-          <BackButton
-            onChange={() => {
-              props.onChange();
-            }}
-          />
+          <BackButton onChange={props.close} />
           <TypesDate
             type={selected.type}
             onChange={type => {
