@@ -4,6 +4,7 @@ import Icon from "../Icon";
 import Modal from "../../lib/Modal";
 import { ThemeContext } from "../../views/Money";
 import { useTags } from "./useTags";
+import { addCostId, addIncomeId } from "./createid"
 const TagsStyle = styled.section<TagsStyleProps>`
   padding: 10px 16px 0 16px;
   ul {
@@ -57,6 +58,7 @@ type TagsStyleProps = {
 export default function TagsMoney(props: Props) {
   const [state, setState] = useState<boolean>(false);
   const { costTags, setIncomeTags, setCostTags, incomeTags } = useTags();
+  console.log(costTags);
   const theme = useContext(ThemeContext);
   const tagsHash: { [propName: string]: string } = {
     shop: "服饰",
@@ -106,7 +108,7 @@ export default function TagsMoney(props: Props) {
           return;
         }
       }
-      setCostTags([...costTags, { id: Math.random(), name: value }]);
+      setCostTags([...costTags, { id: addCostId(), name: value }]);
     };
     const setIncome = () => {
       for (let i = 0; i < incomeTags.length; i++) {
@@ -115,7 +117,7 @@ export default function TagsMoney(props: Props) {
           return;
         }
       }
-      setIncomeTags([...incomeTags, { id: Math.random(), name: value }]);
+      setIncomeTags([...incomeTags, { id: addIncomeId(), name: value }]);
     };
     theme.name === "cost" ? setCost() : setIncome();
   };
