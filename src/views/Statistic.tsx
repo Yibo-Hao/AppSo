@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Layout from "../compontents/Layout";
+import EditTag from "../compontents/Statistic/EditTag"
 import {
   Switch,
   Route,
@@ -85,8 +86,8 @@ const Statistic: React.FunctionComponent = () => {
             height={(window.screen.height - height).toString() + "px"}
           />
         </Route>
-        <Route exact path={`${path}/tags/:tags`}>
-          tags
+        <Route exact path={`${path}/tags/:id`}>
+          <EditTag/>
         </Route>
         <Route exact path={`${path}/analysis`}>
           year analysis

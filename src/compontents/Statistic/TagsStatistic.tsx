@@ -58,7 +58,7 @@ const TagsStatistic: React.FunctionComponent<{ height: string }> = props => {
     <TagsStyle height={props.height}>
       <ol className="cost">
         {costTags.map(tag => (
-          <Link to={`${url}/` + tag}  key={tag.id}>
+          <Link to={`${url}/cost` + tag.id}  key={tag.id}>
             <div className="costDiv" >
               <li>{tag.name}</li>
             </div>
@@ -67,7 +67,7 @@ const TagsStatistic: React.FunctionComponent<{ height: string }> = props => {
       </ol>
       <ol className="income">
         {incomeTags.map(tag => (
-          <Link to={`${url}/` + tag}  key={tag.id}>
+          <Link to={`${url}/income` + tag.id}  key={tag.id}>
             <div className="incomeDiv">
               <li>{tag.name}</li>
             </div>
