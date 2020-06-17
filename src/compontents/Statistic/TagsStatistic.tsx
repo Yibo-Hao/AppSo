@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { useTags } from "../Money/useTags";
+import { Link, useRouteMatch } from "react-router-dom";
 type TagsStyleProps = {
-    height: string;
+  height: string;
 };
 const TagsStyle = styled.div<TagsStyleProps>`
   overflow: auto;
@@ -30,11 +31,7 @@ const TagsStyle = styled.div<TagsStyleProps>`
   }
   ol {
     font-size: 16px;
-    li {
-      padding: 8px 5px 8px 5px;
-      flex-grow: 1;
-      color: white;
-    }
+    color: white;
     div {
       margin: 5px;
       border-radius: 4px;
@@ -42,6 +39,10 @@ const TagsStyle = styled.div<TagsStyleProps>`
       cursor: pointer;
       position: relative;
       display: flex;
+      li {
+        padding: 8px 5px 8px 5px;
+        flex-grow: 1;
+      }
       ::before {
         display: block;
         content: "";
@@ -50,23 +51,27 @@ const TagsStyle = styled.div<TagsStyleProps>`
     }
   }
 `;
-const TagsStatistic: React.FunctionComponent<{ height: string }> = (props) => {
+const TagsStatistic: React.FunctionComponent<{ height: string }> = props => {
   const { costTags, setIncomeTags, setCostTags, incomeTags } = useTags();
-    console.log(props.height);
-    return (
+  const { path, url } = useRouteMatch();
+  return (
     <TagsStyle height={props.height}>
       <ol className="cost">
         {costTags.map(tag => (
-          <div className="costDiv Div" key={tag}>
-            <li>{tag}</li>
-          </div>
+          <Link to={`${url}/` + tag}>
+            <div className="costDiv" key={tag}>
+              <li>{tag}</li>
+            </div>
+          </Link>
         ))}
       </ol>
       <ol className="income">
         {incomeTags.map(tag => (
-          <div className="incomeDiv Div" key={tag}>
-            <li key={tag}>{tag}</li>
-          </div>
+          <Link to={`${url}/` + tag}>
+            <div className="incomeDiv" key={tag}>
+              <li key={tag}>{tag}</li>
+            </div>
+          </Link>
         ))}
       </ol>
     </TagsStyle>

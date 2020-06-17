@@ -85,6 +85,9 @@ const Statistic: React.FunctionComponent = () => {
             height={(window.screen.height - height).toString() + "px"}
           />
         </Route>
+        <Route exact path={`${path}/tags/:tags`}>
+          tags
+        </Route>
         <Route exact path={`${path}/analysis`}>
           year analysis
         </Route>
