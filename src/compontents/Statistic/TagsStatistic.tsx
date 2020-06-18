@@ -175,7 +175,7 @@ const TagsStatistic: React.FunctionComponent<{ height: string }> = props => {
         />
       ) : null}
       {dialogState ? (
-        <DialogStyle>
+        <DialogStyle onClick={closeDialogState}>
           <div className="wrapper">
             <div
               className="cost"
