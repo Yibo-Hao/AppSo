@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useTags } from "../Money/useTags";
 import { Link, useRouteMatch } from "react-router-dom";
+import Icon from "../Icon";
 type TagsStyleProps = {
   height: string;
 };
@@ -9,7 +10,27 @@ const TagsStyle = styled.div<TagsStyleProps>`
   overflow: auto;
   padding: 10px 0;
   height: ${props => props.height};
-  .cost {
+  display: flex;
+  flex-direction: column;
+  > .button {
+    display: flex;
+    height: 40px;
+    width: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(157, 218, 185,0.65);
+    border-radius: 50%;
+    align-self: center;
+    position: absolute;
+    bottom: 10vh;
+    right: 2vh;
+    >.content{
+      font-size: 10px;
+      white-space: nowrap;
+    }
+  }
+  > .cost {
     .costDiv {
       border: 1.5px solid rgb(157, 218, 185);
       background: rgba(157, 218, 185, 0.65);
@@ -19,7 +40,7 @@ const TagsStyle = styled.div<TagsStyleProps>`
       }
     }
   }
-  .income {
+  > .income {
     .incomeDiv {
       border: 1.5px solid rgb(248, 215, 146);
       background: rgba(248, 215, 146, 0.65);
@@ -29,7 +50,7 @@ const TagsStyle = styled.div<TagsStyleProps>`
       }
     }
   }
-  ol {
+  > ol {
     font-size: 16px;
     color: white;
     div {
@@ -58,8 +79,8 @@ const TagsStatistic: React.FunctionComponent<{ height: string }> = props => {
     <TagsStyle height={props.height}>
       <ol className="cost">
         {costTags.map(tag => (
-          <Link to={`${url}/cost` + tag.id}  key={tag.id}>
-            <div className="costDiv" >
+          <Link to={`${url}/cost` + tag.id} key={tag.id}>
+            <div className="costDiv">
               <li>{tag.name}</li>
             </div>
           </Link>
@@ -67,13 +88,17 @@ const TagsStatistic: React.FunctionComponent<{ height: string }> = props => {
       </ol>
       <ol className="income">
         {incomeTags.map(tag => (
-          <Link to={`${url}/income` + tag.id}  key={tag.id}>
+          <Link to={`${url}/income` + tag.id} key={tag.id}>
             <div className="incomeDiv">
               <li>{tag.name}</li>
             </div>
           </Link>
         ))}
       </ol>
+      <div className="button">
+        <Icon name="add" />
+        <span className="content">新增</span>
+      </div>
     </TagsStyle>
   );
 };
