@@ -13,7 +13,19 @@ const EditTagStyle = styled.div`
     background: white;
     justify-content: center;
   }
+  .wrapper {
+    margin: 0 auto;
+    display: flex;
+  }
+
   .save {
+    margin: 0 8px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    white-space: nowrap;
+    background: rgb(157, 218, 185);
+  }
+  .delete {
     margin: 0 auto;
     padding: 8px 16px;
     border-radius: 8px;
@@ -47,7 +59,13 @@ const InputWrapper = styled.section`
 `;
 const EditTag: React.FunctionComponent = () => {
   const { id } = useParams();
-  const { costTags, incomeTags, setIncomeTags, setCostTags ,findTag} = useTags();
+  const {
+    costTags,
+    incomeTags,
+    setIncomeTags,
+    setCostTags,
+    findTag
+  } = useTags();
   const [value, setValue] = useState(findTag(id).name);
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -58,7 +76,6 @@ const EditTag: React.FunctionComponent = () => {
     else {
       setIncomeTags([...incomeTags, { id: addIncomeId(), name: value }]);
     }
-
   };
   const onInputLimit = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value.slice(0, 5));
@@ -91,8 +108,11 @@ const EditTag: React.FunctionComponent = () => {
           />
         </label>
       </InputWrapper>
-      <div className="save" onClick={save}>
-        保存
+      <div className="wrapper">
+        <div className="save" onClick={save}>
+          保存
+        </div>
+        <div className="delete">删除</div>
       </div>
     </EditTagStyle>
   );
