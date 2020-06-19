@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 const defaultCostValue = [
   { id: 1, name: "服饰" },
   { id: 2, name: "餐饮" },
@@ -29,12 +28,46 @@ const useTags = () => {
       return incomeTags.filter(tag => tag.id === Number(TagId))[0];
     }
   };
+  const updateTag = (id: string, value: string) => {
+    const tag = findTag(id);
+    if (tag.id <= 4) return;
+    if (id[0] === "c") {
+      const newTags = costTags.map(t => {
+        if (t.id === tag.id) {
+          return { id:tag.id, name: value };
+        } else {
+          return t;
+        }
+      });
+      setCostTags(newTags);
+    }else{
+      const newTags = incomeTags.map(t => {
+        if (t.id === tag.id) {
+          return { id:tag.id, name: value };
+        } else {
+          return t;
+        }
+      });
+      setIncomeTags(newTags);
+    }
+  };
+  const deleteTag = (id: string) => {
+    const tag = findTag(id);
+    if (tag.id <= 4) return;
+    if (id[0] === "c") {
+      setCostTags(costTags.filter(t => t.id !== tag.id));
+    } else {
+      setIncomeTags(incomeTags.filter(t => t.id !== tag.id));
+    }
+  };
   return {
     costTags,
     setCostTags,
     incomeTags,
     setIncomeTags,
-    findTag
+    findTag,
+    updateTag,
+    deleteTag
   };
 };
 

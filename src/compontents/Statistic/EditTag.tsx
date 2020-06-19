@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTags } from "../Money/useTags";
 import styled from "styled-components";
-import { addCostId, addIncomeId } from "../Money/createid";
 const EditTagStyle = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,38 +58,18 @@ const InputWrapper = styled.section`
 `;
 const EditTag: React.FunctionComponent = () => {
   const { id } = useParams();
-  const {
-    costTags,
-    incomeTags,
-    setIncomeTags,
-    setCostTags,
-    findTag
-  } = useTags();
+  const { deleteTag, findTag ,updateTag} = useTags();
   const [value, setValue] = useState(findTag(id).name);
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
-  const save = () => {
-    if (id[0] === "c")
-      setCostTags([...costTags, { id: addCostId(), name: value }]);
-    else {
-      setIncomeTags([...incomeTags, { id: addIncomeId(), name: value }]);
-    }
-  };
   const onInputLimit = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value.slice(0, 5));
-    if (id[0] === "c")
-      setCostTags([
-        ...costTags,
-        { id: addCostId(), name: e.target.value.slice(0, 5) }
-      ]);
-    else {
-      setIncomeTags([
-        ...incomeTags,
-        { id: addIncomeId(), name: e.target.value.slice(0, 5) }
-      ]);
-    }
   };
+  const save = () => {
+    updateTag(id,value)
+  };
+  const deleteATag = () => deleteTag(id);
   return (
     <EditTagStyle>
       <nav className="nav">
@@ -112,7 +91,9 @@ const EditTag: React.FunctionComponent = () => {
         <div className="save" onClick={save}>
           保存
         </div>
-        <div className="delete">删除</div>
+        <div className="delete" onClick={deleteATag}>
+          删除
+        </div>
       </div>
     </EditTagStyle>
   );
