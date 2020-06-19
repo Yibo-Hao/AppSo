@@ -47,17 +47,54 @@ const InputWrapper = styled.section`
 `;
 const EditTag: React.FunctionComponent = () => {
   const { id } = useParams();
-  const { costTags, incomeTags, setIncomeTags, setCostTags } = useTags();
-  const findTag = (id: string) => {
-    let TagId = "";
-    if (id[0] === "c") {
-      TagId = id.slice(4);
-      return costTags.filter(tag => tag.id === Number(TagId))[0];
-    } else {
-      TagId = id.slice(6);
-     return incomeTags.filter(tag => tag.id === Number(TagId))[0];
+  const { costTags, incomeTags, setIncomeTags, setCostTags ,findTag} = useTags();
+  const [value, setValue] = useState(findTag(id).name);
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+  const save = () => {
+    if (id[0] === "c")
+      setCostTags([...costTags, { id: addCostId(), name: value }]);
+    else {
+      setIncomeTags([...incomeTags, { id: addIncomeId(), name: value }]);
+    }
+
+  };
+  const onInputLimit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value.slice(0, 5));
+    if (id[0] === "c")
+      setCostTags([
+        ...costTags,
+        { id: addCostId(), name: e.target.value.slice(0, 5) }
+      ]);
+    else {
+      setIncomeTags([
+        ...incomeTags,
+        { id: addIncomeId(), name: e.target.value.slice(0, 5) }
+      ]);
     }
   };
-  return <div>{findTag(id).name}</div>;
+  return (
+    <EditTagStyle>
+      <nav className="nav">
+        <span className="title">编辑标签</span>
+      </nav>
+      <InputWrapper>
+        <label>
+          <span>标签名:</span>
+          <input
+            type="text"
+            value={value}
+            onChange={onInputChange}
+            onBlur={onInputLimit}
+            disabled={findTag(id).id <= 4}
+          />
+        </label>
+      </InputWrapper>
+      <div className="save" onClick={save}>
+        保存
+      </div>
+    </EditTagStyle>
+  );
 };
 export default EditTag;
