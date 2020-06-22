@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useHistory } from "react-router-dom";
 import { useTags } from "../Money/useTags";
 import styled from "styled-components";
 const EditTagStyle = styled.div`
@@ -57,6 +57,7 @@ const InputWrapper = styled.section`
   }
 `;
 const EditTag: React.FunctionComponent = () => {
+  const history = useHistory()
   const { id } = useParams();
   const { deleteTag, findTag ,updateTag} = useTags();
   const [value, setValue] = useState(findTag(id).name);
@@ -68,8 +69,12 @@ const EditTag: React.FunctionComponent = () => {
   };
   const save = () => {
     updateTag(id,value)
+    history.goBack()
   };
-  const deleteATag = () => deleteTag(id);
+  const deleteATag = () => {
+    deleteTag(id);
+    history.goBack()
+  }
   return (
     <EditTagStyle>
       <nav className="nav">
