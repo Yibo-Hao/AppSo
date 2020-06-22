@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {addCostId, addIncomeId} from "./createid";
 const defaultCostValue = [
   { id: 1, name: "服饰" },
   { id: 2, name: "餐饮" },
@@ -12,12 +13,10 @@ const defaultIncomeValue = [
   { id: 4, name: "红包" }
 ];
 const useTags = () => {
-  const [costTags, setCostTags] = useState<{ id: number; name: string }[]>(
-    defaultCostValue
-  );
-  const [incomeTags, setIncomeTags] = useState<{ id: number; name: string }[]>(
-    defaultIncomeValue
-  );
+  const [costTags, setCostTags] = useState<{ id: number; name: string }[]>([]);
+  const [incomeTags, setIncomeTags] = useState<
+    { id: number; name: string }[]
+  >([]);
   const findTag = (id: string) => {
     let TagId = "";
     if (id[0] === "c") {
@@ -34,16 +33,16 @@ const useTags = () => {
     if (id[0] === "c") {
       const newTags = costTags.map(t => {
         if (t.id === tag.id) {
-          return { id:tag.id, name: value };
+          return { id: tag.id, name: value };
         } else {
           return t;
         }
       });
       setCostTags(newTags);
-    }else{
+    } else {
       const newTags = incomeTags.map(t => {
         if (t.id === tag.id) {
-          return { id:tag.id, name: value };
+          return { id: tag.id, name: value };
         } else {
           return t;
         }
@@ -60,6 +59,24 @@ const useTags = () => {
       setIncomeTags(incomeTags.filter(t => t.id !== tag.id));
     }
   };
+  const addCostTag = (value: string) => {
+    for (let i = 0; i < costTags.length; i++) {
+      if (costTags[i].name === value) {
+        alert("请重新输入类别名");
+        return;
+      }
+    }
+    setCostTags([...costTags, { id: addCostId(), name: value }]);
+  }
+  const addIncomeTag = (value:string) => {
+    for (let i = 0; i < incomeTags.length; i++) {
+      if (incomeTags[i].name === value) {
+        alert("请重新输入类别名");
+        return;
+      }
+    }
+    setIncomeTags([...incomeTags, { id: addIncomeId(), name: value }]);
+  };
   return {
     costTags,
     setCostTags,
@@ -67,7 +84,9 @@ const useTags = () => {
     setIncomeTags,
     findTag,
     updateTag,
-    deleteTag
+    deleteTag,
+    addCostTag,
+    addIncomeTag
   };
 };
 

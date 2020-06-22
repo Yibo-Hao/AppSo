@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useTags } from "../Money/useTags";
 import { Link, useRouteMatch } from "react-router-dom";
 import Icon from "../Icon";
-import { addCostId, addIncomeId } from "../Money/createid";
 import Modal from "../../lib/Modal";
 import Dialog from "./Dialog";
 const TagsStyle = styled.div<{ height: string }>`
@@ -73,7 +72,7 @@ const TagsStyle = styled.div<{ height: string }>`
   }
 `;
 const TagsStatistic: React.FunctionComponent<{ height: string }> = props => {
-  const { costTags, setIncomeTags, setCostTags, incomeTags } = useTags();
+  const { costTags, addCostTag,addIncomeTag , incomeTags } = useTags();
   const { url } = useRouteMatch();
   const [modalState, setModalState] = useState(false);
   const [dialogState, setDialogState] = useState(false);
@@ -89,24 +88,6 @@ const TagsStatistic: React.FunctionComponent<{ height: string }> = props => {
   };
   const closeModalState = () => {
     setModalState(false);
-  };
-  const costOnchange = (value: string) => {
-    for (let i = 0; i < costTags.length; i++) {
-      if (costTags[i].name === value) {
-        alert("请重新输入类别名");
-        return;
-      }
-    }
-    setCostTags([...costTags, { id: addCostId(), name: value }]);
-  };
-  const incomeChange = (value: string) => {
-    for (let i = 0; i < incomeTags.length; i++) {
-      if (incomeTags[i].name === value) {
-        alert("请重新输入类别名");
-        return;
-      }
-    }
-    setIncomeTags([...incomeTags, { id: addIncomeId(), name: value }]);
   };
   return (
     <TagsStyle height={props.height}>
@@ -140,7 +121,7 @@ const TagsStatistic: React.FunctionComponent<{ height: string }> = props => {
           empty={false}
           initialValue=""
           limit={5}
-          onChange={type === "cost" ? costOnchange : incomeChange}
+          onChange={type === "cost" ? addCostTag : addIncomeTag}
           placeholder="不能与已有类型名重复"
           title="请输入类别名"
         />

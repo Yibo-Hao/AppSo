@@ -4,7 +4,6 @@ import Icon from "../Icon";
 import Modal from "../../lib/Modal";
 import { ThemeContext } from "../../views/Money";
 import { useTags } from "./useTags";
-import { addCostId, addIncomeId } from "./createid"
 const TagsStyle = styled.section<TagsStyleProps>`
   padding: 10px 16px 0 16px;
   ul {
@@ -57,7 +56,7 @@ type TagsStyleProps = {
 
 export default function TagsMoney(props: Props) {
   const [state, setState] = useState<boolean>(false);
-  const { costTags, setIncomeTags, setCostTags, incomeTags } = useTags();
+  const { costTags, incomeTags ,addCostTag,addIncomeTag} = useTags();
   console.log(costTags);
   const theme = useContext(ThemeContext);
   const tagsHash: { [propName: string]: string } = {
@@ -101,25 +100,7 @@ export default function TagsMoney(props: Props) {
     return "wait";
   };
   const onChange = (value: string) => {
-    const setCost = () => {
-      for (let i = 0; i < costTags.length; i++) {
-        if (costTags[i].name === value) {
-          alert("请重新输入类别名");
-          return;
-        }
-      }
-      setCostTags([...costTags, { id: addCostId(), name: value }]);
-    };
-    const setIncome = () => {
-      for (let i = 0; i < incomeTags.length; i++) {
-        if (incomeTags[i].name === value) {
-          alert("请重新输入类别名");
-          return;
-        }
-      }
-      setIncomeTags([...incomeTags, { id: addIncomeId(), name: value }]);
-    };
-    theme.name === "cost" ? setCost() : setIncome();
+    theme.name === "cost" ? addIncomeTag(value) : addCostTag(value);
   };
   return (
     <TagsStyle iconBackground={theme.icon.background}>
