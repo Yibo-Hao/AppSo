@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams,useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useTags } from "../Money/useTags";
 import styled from "styled-components";
 const EditTagStyle = styled.div`
@@ -57,10 +57,12 @@ const InputWrapper = styled.section`
   }
 `;
 const EditTag: React.FunctionComponent = () => {
-  const history = useHistory()
+  const history = useHistory();
   const { id } = useParams();
-  const { deleteTag, findTag ,updateTag} = useTags();
-  const [value, setValue] = useState(findTag(id).name);
+  const { deleteTag, findTag, updateTag } = useTags();
+  const name = (findTag(id) || { name: null }).name;
+  const Tid = (findTag(id) || { id: null }).id;
+  const [value, setValue] = useState(name);
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
@@ -68,13 +70,13 @@ const EditTag: React.FunctionComponent = () => {
     setValue(e.target.value.slice(0, 5));
   };
   const save = () => {
-    updateTag(id,value)
-    history.goBack()
+    updateTag(id, value);
+    history.goBack();
   };
   const deleteATag = () => {
     deleteTag(id);
-    history.goBack()
-  }
+    history.goBack();
+  };
   return (
     <EditTagStyle>
       <nav className="nav">
@@ -88,7 +90,7 @@ const EditTag: React.FunctionComponent = () => {
             value={value}
             onChange={onInputChange}
             onBlur={onInputLimit}
-            disabled={findTag(id).id <= 4}
+            disabled={Tid <= 4}
           />
         </label>
       </InputWrapper>
