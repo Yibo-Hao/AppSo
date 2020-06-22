@@ -1,5 +1,5 @@
-import { useState } from "react";
-import {addCostId, addIncomeId} from "./createid";
+import { useEffect, useState } from "react";
+import { addCostId, addIncomeId } from "./createid";
 const defaultCostValue = [
   { id: 1, name: "服饰" },
   { id: 2, name: "餐饮" },
@@ -13,10 +13,22 @@ const defaultIncomeValue = [
   { id: 4, name: "红包" }
 ];
 const useTags = () => {
-  const [costTags, setCostTags] = useState<{ id: number; name: string }[]>([]);
-  const [incomeTags, setIncomeTags] = useState<
-    { id: number; name: string }[]
-  >([]);
+  const [costTags, setCostTags] = useState<{ id: number; name: string }[]>(
+    JSON.parse(window.localStorage.getItem("costTags") || JSON.stringify(defaultCostValue))
+  );
+  const [incomeTags, setIncomeTags] = useState<{ id: number; name: string }[]>(
+      JSON.parse(window.localStorage.getItem("incomeTags") || JSON.stringify(defaultIncomeValue))
+  );
+  useEffect(() => {
+    window.localStorage.setItem("costTags", JSON.stringify(costTags));
+  }, [costTags]);
+  useEffect(() => {
+    window.localStorage.setItem("incomeTags", JSON.stringify(incomeTags));
+  }, [incomeTags]);
+  useEffect(()=>{
+    setCostTags(JSON.parse(window.localStorage.getItem("costTags") || "[]"))
+    setIncomeTags(JSON.parse(window.localStorage.getItem("incomeTags") || "[]"))
+  },[])
   const findTag = (id: string) => {
     let TagId = "";
     if (id[0] === "c") {
@@ -67,8 +79,8 @@ const useTags = () => {
       }
     }
     setCostTags([...costTags, { id: addCostId(), name: value }]);
-  }
-  const addIncomeTag = (value:string) => {
+  };
+  const addIncomeTag = (value: string) => {
     for (let i = 0; i < incomeTags.length; i++) {
       if (incomeTags[i].name === value) {
         alert("请重新输入类别名");
