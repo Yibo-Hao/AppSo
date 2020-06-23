@@ -25,10 +25,6 @@ const useTags = () => {
   useEffect(() => {
     window.localStorage.setItem("incomeTags", JSON.stringify(incomeTags));
   }, [incomeTags]);
-  useEffect(()=>{
-    setCostTags(JSON.parse(window.localStorage.getItem("costTags") || "[]"))
-    setIncomeTags(JSON.parse(window.localStorage.getItem("incomeTags") || "[]"))
-  },[])
   const findTag = (id: string) => {
     let TagId = "";
     if (id[0] === "c") {
