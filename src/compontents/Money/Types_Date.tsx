@@ -57,6 +57,9 @@ export default function TypesDate(props: Props) {
   useEffect(() => {
     props.onChange(selectedType);
   }, [selectedType]);
+  useEffect(() => {
+      setSelectedType(props.type);
+  }, [props.type]);
   return (
     <TypeDateStyleWrapper selectedType={theme.type}>
       <section className="typeStyle">
