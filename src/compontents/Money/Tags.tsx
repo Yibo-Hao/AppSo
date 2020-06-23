@@ -57,7 +57,6 @@ type TagsStyleProps = {
 export default function TagsMoney(props: Props) {
   const [state, setState] = useState<boolean>(false);
   const { costTags, incomeTags ,addCostTag,addIncomeTag} = useTags();
-  console.log(costTags);
   const theme = useContext(ThemeContext);
   const tagsHash: { [propName: string]: string } = {
     shop: "服饰",
@@ -88,6 +87,9 @@ export default function TagsMoney(props: Props) {
   useEffect(() => {
     props.onChange(selectedTagId);
   }, [selectedTagId]);
+  useEffect(() => {
+    setSelectedTagId(props.tagId)
+  }, [props.tagId]);
   useEffect(() => {
     setSelectedTagId(1);
   }, [theme.name]);
