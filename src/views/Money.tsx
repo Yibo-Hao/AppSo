@@ -74,7 +74,6 @@ export default function Money(props: { close: () => void }) {
             }}
           />
           <NoteButton
-            note={selected.note}
             onChange={note => {
               onChange({ note });
             }}

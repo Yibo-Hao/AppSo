@@ -13,7 +13,6 @@ const NoteStyle = styled.section`
   }
 `;
 type Props = {
-  note: string;
   onChange: (value: string) => void;
 };
 
