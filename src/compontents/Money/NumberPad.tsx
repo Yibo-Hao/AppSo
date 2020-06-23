@@ -38,6 +38,9 @@ export default function NumberPad(props: Props) {
   useEffect(() => {
     props.onChange(outPut);
   }, [outPut]);
+    useEffect(() => {
+        setOutPut(props.outPut);
+    }, [props.outPut]);
   const setOutPut = (outPut: string) => {
     if (outPut.length > 14) {
       outPut = outPut.slice(0, 14);
