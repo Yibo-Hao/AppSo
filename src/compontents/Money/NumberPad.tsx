@@ -30,6 +30,7 @@ const NumberPadStyle = styled.section<NumberPadStyleProps>`
 type Props = {
   outPut: string;
   onChange: (outPut: string) => void;
+  submit: () => void;
 };
 export default function NumberPad(props: Props) {
   const theme = useContext(ThemeContext);
@@ -83,7 +84,7 @@ export default function NumberPad(props: Props) {
       <button>4</button>
       <button>5</button>
       <button>6</button>
-      <button className="OK">确定</button>
+      <button className="OK" onClick={props.submit}>确定</button>
       <button>7</button>
       <button>8</button>
       <button>9</button>

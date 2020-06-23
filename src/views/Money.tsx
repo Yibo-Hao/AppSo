@@ -7,6 +7,7 @@ import TagsMoney from "../compontents/Money/Tags";
 import NoteButton from "../compontents/Money/NoteButton";
 import NumberPad from "../compontents/Money/NumberPad";
 import { themes } from "../compontents/Money/theme";
+import useRecord from "../compontents/Money/useRecord";
 const MoneyWrapper = styled.div`
   height: 100vh;
   background: rgba(0, 0, 0, 0.15);
@@ -29,6 +30,7 @@ const MoneyWrapper = styled.div`
 `;
 const ThemeContext = React.createContext(themes.cost);
 export default function Money(props: { close: () => void }) {
+  const { addRecord } = useRecord();
   const [selected, setSelected] = useState({
     tagId: 1 as number,
     type: "-" as "-" | "+",
@@ -39,6 +41,16 @@ export default function Money(props: { close: () => void }) {
     setSelected({
       ...selected,
       ...obj
+    });
+  };
+  const submit = () => {
+    addRecord(selected);
+    window.alert("保存成功");
+    setSelected({
+      tagId: 1,
+      type: "-",
+      note: "",
+      outPut: ""
     });
   };
   return (
@@ -72,6 +84,7 @@ export default function Money(props: { close: () => void }) {
             onChange={outPut => {
               onChange({ outPut });
             }}
+            submit={submit}
           />
         </div>
       </MoneyWrapper>
