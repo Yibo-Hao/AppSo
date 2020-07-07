@@ -40,6 +40,7 @@ const TypeDateStyleWrapper = styled.section<TypeDateStyleWrapperProps>`
 `;
 type Props = {
   type: "-" | "+";
+  date: string;
   onChange: (type: "-" | "+") => void;
 };
 type TypeDateStyleWrapperProps = {
@@ -54,11 +55,12 @@ export default function TypesDate(props: Props) {
   const theme = useContext(ThemeContext);
   const [typeList] = useState<("-" | "+")[]>(["-", "+"]);
   const [selectedType, setSelectedType] = useState<"-" | "+">(props.type);
+  const date = props.date.split("T")[0];
   useEffect(() => {
     props.onChange(selectedType);
   }, [selectedType]);
   useEffect(() => {
-      setSelectedType(props.type);
+    setSelectedType(props.type);
   }, [props.type]);
   return (
     <TypeDateStyleWrapper selectedType={theme.type}>
@@ -80,7 +82,7 @@ export default function TypesDate(props: Props) {
         </ul>
       </section>
       <section className="dateStyle">
-        <div>6月4日</div>
+        <div>{date}</div>
       </section>
     </TypeDateStyleWrapper>
   );

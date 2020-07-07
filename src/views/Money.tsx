@@ -29,13 +29,21 @@ const MoneyWrapper = styled.div`
   }
 `;
 const ThemeContext = React.createContext(themes.cost);
+type RecordItem = {
+  tagId: number;
+  type: "-" | "+";
+  note: string;
+  outPut: string;
+  date: string;
+};
 export default function Money(props: { close: () => void }) {
   const { addRecord } = useRecord();
-  const [selected, setSelected] = useState({
-    tagId: 1 as number,
-    type: "-" as "-" | "+",
-    note: "" as string,
-    outPut: "" as string
+  const [selected, setSelected] = useState<RecordItem>({
+    tagId: 1,
+    type: "-",
+    note: "",
+    outPut: "",
+    date: new Date().toISOString()
   });
   const onChange = (obj: Partial<typeof selected>) => {
     setSelected({
@@ -50,7 +58,8 @@ export default function Money(props: { close: () => void }) {
       tagId: 1,
       type: "-",
       note: "",
-      outPut: ""
+      outPut: "",
+      date: new Date().toISOString()
     });
   };
   return (
@@ -62,6 +71,7 @@ export default function Money(props: { close: () => void }) {
           <BackButton onChange={props.close} />
           <TypesDate
             type={selected.type}
+            date={selected.date}
             onChange={type => {
               onChange({ type });
             }}
