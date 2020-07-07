@@ -55,7 +55,7 @@ export default function TypesDate(props: Props) {
   const theme = useContext(ThemeContext);
   const [typeList] = useState<("-" | "+")[]>(["-", "+"]);
   const [selectedType, setSelectedType] = useState<"-" | "+">(props.type);
-  const date = props.date.split("T")[0];
+  const date = props.date;
   useEffect(() => {
     props.onChange(selectedType);
   }, [selectedType]);

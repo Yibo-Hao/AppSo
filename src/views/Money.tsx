@@ -43,7 +43,7 @@ export default function Money(props: { close: () => void }) {
     type: "-",
     note: "",
     outPut: "",
-    date: new Date().toISOString()
+    date: new Date().toLocaleDateString()
   });
   const onChange = (obj: Partial<typeof selected>) => {
     setSelected({
@@ -59,7 +59,7 @@ export default function Money(props: { close: () => void }) {
       type: "-",
       note: "",
       outPut: "",
-      date: new Date().toISOString()
+      date: new Date().toLocaleDateString()
     });
   };
   return (
