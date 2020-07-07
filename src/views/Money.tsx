@@ -53,7 +53,6 @@ export default function Money(props: { close: () => void }) {
   };
   const submit = () => {
     addRecord(selected);
-    window.alert("保存成功");
     setSelected({
       tagId: 1,
       type: "-",
