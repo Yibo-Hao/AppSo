@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import Notfound from "./Notfound";
+import Timeline from "../compontents/Statistic/timeLine";
 import { TagsStatistic } from "../compontents/Statistic/TagsStatistic";
 const NavStyle = styled.div`
   line-height: 24px;
@@ -79,7 +80,7 @@ const Statistic: React.FunctionComponent = () => {
       <Switch>
         <Redirect exact from={`${path}/`} to={`${path}/tags`} />
         <Route exact path={`${path}/timeline`}>
-          mouth timeline
+          <Timeline/>
         </Route>
         <Route exact path={`${path}/tags`}>
           <TagsStatistic

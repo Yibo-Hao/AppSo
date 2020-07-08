@@ -20,6 +20,6 @@ const useRecord = () => {
   useEffect(() => {
     window.localStorage.setItem("record", JSON.stringify(records));
   }, [records]);
-  return { addRecord };
+  return { addRecord ,records};
 };
 export default useRecord;
