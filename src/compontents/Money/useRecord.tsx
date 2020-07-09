@@ -4,6 +4,7 @@ type RecordItem = {
   type: "-" | "+";
   note: string;
   outPut: string;
+  date: string;
 };
 const useRecord = () => {
   const [records, setRecords] = useState<RecordItem[]>(
