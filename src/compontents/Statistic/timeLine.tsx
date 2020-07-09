@@ -1,24 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useTags } from "../Money/useTags";
 import useRecord from "../Money/useRecord";
+import TimelineLine from "./timeline-line";
 import styled from "styled-components";
 const Box = styled.div<{ height: string; index: number[]}>`
   overflow: auto;
   height: ${props => props.height};
   font-size: 16px;
   position: relative;
-  ul {
-    &::before {
-      content: "";
-      background: #c5cae9;
-      width: 5px;
-      height: 100%;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-
   .timeline-item {
     width: 100%;
     margin-bottom: 40px;
@@ -67,6 +56,7 @@ const Timeline: React.FunctionComponent<{ height: string }> = props => {
       index={findIndex()}
     >
       <ul className="ul" ref={ref}>
+        <TimelineLine height={height}/>
         {records.map(r => {
           return (
             <li key={r.type + r.tagId} className="timeline-item">
