@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Modal from  "../../lib/Modal"
+import Modal from "../../lib/Modal";
+import useRecord from "./useRecord";
 
 const NoteStyle = styled.section`
   align-self: flex-start;
@@ -18,6 +19,7 @@ type Props = {
 
 export default function NoteMoney(props: Props) {
   const [noteState, setNoteState] = useState(false);
+  const { selected } = useRecord();
   const openNote = () => {
     setNoteState(true);
   };
@@ -28,13 +30,15 @@ export default function NoteMoney(props: Props) {
     <NoteStyle>
       <button onClick={openNote}>添加备注</button>
       <Modal
-          initialValue=""
-          placeholder="请输入备注内容"
-          close={closeNote}
-          empty={true}
-          limit={35}
-          title="请添加备注"
-          onChange={value => {props.onChange(value)}}
+        initialValue={selected.note}
+        placeholder="请输入备注内容"
+        close={closeNote}
+        empty={true}
+        limit={35}
+        title="请添加备注"
+        onChange={value => {
+          props.onChange(value);
+        }}
       />
     </NoteStyle>
   ) : (
