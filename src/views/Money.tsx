@@ -8,8 +8,6 @@ import NoteButton from "../compontents/Money/NoteButton";
 import NumberPad from "../compontents/Money/NumberPad";
 import { themes } from "../compontents/Money/theme";
 import useRecord from "../compontents/Money/useRecord";
-import {addRecordId} from "../compontents/Money/createid"
-import RecordItem from "../compontents/Money/record.d";
 const MoneyWrapper = styled.div`
   height: 100vh;
   background: rgba(0, 0, 0, 0.15);
@@ -32,30 +30,11 @@ const MoneyWrapper = styled.div`
 `;
 const ThemeContext = React.createContext(themes.cost);
 export default function Money(props: { close: () => void }) {
-  const { addRecord } = useRecord();
-  const [selected, setSelected] = useState<RecordItem>({
-    id:addRecordId(),
-    tagId: 1,
-    type: "-",
-    note: "",
-    outPut: "",
-    date: new Date().toLocaleDateString()
-  });
+  const { selected, setSelected, submit } = useRecord();
   const onChange = (obj: Partial<typeof selected>) => {
     setSelected({
       ...selected,
       ...obj
-    });
-  };
-  const submit = () => {
-    addRecord(selected);
-    setSelected({
-      id:addRecordId(),
-      tagId: 1,
-      type: "-",
-      note: "",
-      outPut: "",
-      date: new Date().toLocaleDateString()
     });
   };
   return (
