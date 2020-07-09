@@ -96,7 +96,7 @@ const useTags = () => {
     if (type==="-"){
       tag = costTags.filter(t => t.id === id)[0];
     }else{
-      tag = costTags.filter(t => t.id === id)[0];
+      tag = incomeTags.filter(t => t.id === id)[0];
     }
     if (tag) {
       return tag.name;
