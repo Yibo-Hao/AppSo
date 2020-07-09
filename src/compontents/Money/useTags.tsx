@@ -14,10 +14,16 @@ const defaultIncomeValue = [
 ];
 const useTags = () => {
   const [costTags, setCostTags] = useState<{ id: number; name: string }[]>(
-    JSON.parse(window.localStorage.getItem("costTags") || JSON.stringify(defaultCostValue))
+    JSON.parse(
+      window.localStorage.getItem("costTags") ||
+        JSON.stringify(defaultCostValue)
+    )
   );
   const [incomeTags, setIncomeTags] = useState<{ id: number; name: string }[]>(
-      JSON.parse(window.localStorage.getItem("incomeTags") || JSON.stringify(defaultIncomeValue))
+    JSON.parse(
+      window.localStorage.getItem("incomeTags") ||
+        JSON.stringify(defaultIncomeValue)
+    )
   );
   useEffect(() => {
     window.localStorage.setItem("costTags", JSON.stringify(costTags));
@@ -85,6 +91,17 @@ const useTags = () => {
     }
     setIncomeTags([...incomeTags, { id: addIncomeId(), name: value }]);
   };
+  const getName = (type:string,id: number) => {
+    let tag:{ id: number; name: string };
+    if (type==="-"){
+      tag = costTags.filter(t => t.id === id)[0];
+    }else{
+      tag = costTags.filter(t => t.id === id)[0];
+    }
+    if (tag) {
+      return tag.name;
+    } else return "";
+  };
   return {
     costTags,
     setCostTags,
@@ -94,7 +111,8 @@ const useTags = () => {
     updateTag,
     deleteTag,
     addCostTag,
-    addIncomeTag
+    addIncomeTag,
+    getName
   };
 };
 
