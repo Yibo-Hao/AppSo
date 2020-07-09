@@ -80,7 +80,7 @@ const Statistic: React.FunctionComponent = () => {
       <Switch>
         <Redirect exact from={`${path}/`} to={`${path}/tags`} />
         <Route exact path={`${path}/timeline`}>
-          <Timeline/>
+          <Timeline height={(window.screen.height - height).toString() + "px"}/>
         </Route>
         <Route exact path={`${path}/tags`}>
           <TagsStatistic
