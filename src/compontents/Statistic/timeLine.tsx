@@ -109,7 +109,7 @@ const Timeline: React.FunctionComponent<{ height: string }> = props => {
         <TimelineLine height={height} />
         {records.map(r => {
           return (
-            <li key={r.type + r.tagId + r.outPut+r.note} className="timeline-item">
+            <li key={r.id} className="timeline-item">
               <div className="timeline-img" />
               <div className="timeline-content" style={getStyle(r.type)}>
                 <div className="wrapper">

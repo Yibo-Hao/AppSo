@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-type RecordItem = {
-  tagId: number;
-  type: "-" | "+";
-  note: string;
-  outPut: string;
-  date: string;
-};
+import RecordItem from "./record.d";
 const useRecord = () => {
   const [records, setRecords] = useState<RecordItem[]>(
     JSON.parse(window.localStorage.getItem("record") || "[]")
