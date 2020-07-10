@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 import styled from "styled-components";
 import TypesDate from "../compontents/Money/Types_Date";
 import BackButton from "../compontents/Money/Back_Button";

@@ -92,17 +92,18 @@ const Timeline: React.FunctionComponent<{ height: string }> = props => {
   const getStyle = (type: string) => {
     let style: { float: "right"; padding: string; background: string };
     if (type === "+") {
-      return (style = {
+      style = {
         float: "right",
         padding: "10px",
         background: "rgb(249,228,183)"
-      });
+      }
+      return (style);
     } else {
       return undefined;
     }
   };
   const hash: { [key: string]: RecordItem[] ;} = {};
-  records.map(r => {
+  records.forEach(r => {
     const key = r.date;
     if (!(key in hash)) {
       hash[key] = [];
