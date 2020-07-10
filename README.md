@@ -1,5 +1,5 @@
 # AppSo
-基于 React，TypeScript 的记账单页面应用。
+基于 React，TypeScript 的手机端记账单页面应用。
 
 ## 哈希路由
 采用 react-router 的hash-router 来实现页面的切换。
