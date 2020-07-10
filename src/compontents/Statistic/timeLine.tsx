@@ -9,6 +9,12 @@ const Box = styled.div<{ height: string }>`
   height: ${props => props.height};
   font-size: 16px;
   position: relative;
+  .ul{
+    .dateCategory{
+      padding: 5px;
+      display: inline-block;
+    }
+  }
   .timeline-item {
     width: 100%;
     margin-bottom: 40px;
@@ -95,7 +101,7 @@ const Timeline: React.FunctionComponent<{ height: string }> = props => {
       return undefined;
     }
   };
-  const hash: { [key: string]: RecordItem[] } = {};
+  const hash: { [key: string]: RecordItem[] ;} = {};
   records.map(r => {
     const key = r.date;
     if (!(key in hash)) {
@@ -107,28 +113,42 @@ const Timeline: React.FunctionComponent<{ height: string }> = props => {
     if (a[0] === b[0]) return 0;
     if (a[0] < b[0]) return 1;
     if (a[0] > b[0]) return -1;
-    return 0
+    return 0;
   });
   return (
     <Box height={props.height}>
       <ul className="ul" ref={ref}>
         <TimelineLine height={height} />
-        {records.map(r => {
+        {array.map(([date, DateRecords]) => {
           return (
-            <li key={r.id} className="timeline-item">
-              <div className="timeline-img" />
-              <div className="timeline-content" style={getStyle(r.type)}>
-                <div className="wrapper">
-                  <div className="title">{getName(r.type, r.tagId)}</div>
-                  <div className="date">{r.date}</div>
-                </div>
-                <p>{r.note}</p>
-                <div className="output">
-                  {r.type}
-                  {r.outPut}
-                </div>
+            <div  key={DateRecords[0].id}>
+              <span className="dateCategory">{date}</span>
+              <div>
+                {DateRecords.map(r => {
+                  return (
+                    <li key={r.id} className="timeline-item">
+                      <div className="timeline-img" />
+                      <div
+                        className="timeline-content"
+                        style={getStyle(r.type)}
+                      >
+                        <div className="wrapper">
+                          <div className="title">
+                            {getName(r.type, r.tagId)}
+                          </div>
+                          <div className="date">{r.date}</div>
+                        </div>
+                        <p>{r.note}</p>
+                        <div className="output">
+                          {r.type}
+                          {r.outPut}
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
               </div>
-            </li>
+            </div>
           );
         })}
       </ul>
