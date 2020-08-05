@@ -10,7 +10,7 @@ const NavStyle = styled.div`
   > ul {
     display: flex;
     > li {
-      width: 20%;
+      width: 50%;
       text-align: center;
       padding: 2px;
       margin-top: 2px;
@@ -40,19 +40,19 @@ const Nav = React.forwardRef<HTMLDivElement,{}>((props,ref) => {
   return (
     <NavStyle ref={ref}>
       <ul>
-        <li>
-          <NavLink
-            to="/assets"
-            activeStyle={{
-              color: "blue"
-            }}
-          >
-            <LinkStyle>
-              <Icon name="assets" />
-              <span>资产</span>
-            </LinkStyle>
-          </NavLink>
-        </li>
+        {/*<li>*/}
+        {/*  <NavLink*/}
+        {/*    to="/assets"*/}
+        {/*    activeStyle={{*/}
+        {/*      color: "blue"*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <LinkStyle>*/}
+        {/*      <Icon name="assets" />*/}
+        {/*      <span>资产</span>*/}
+        {/*    </LinkStyle>*/}
+        {/*  </NavLink>*/}
+        {/*</li>*/}
         <li>
           <NavLink
             to="/statistic"
@@ -83,32 +83,32 @@ const Nav = React.forwardRef<HTMLDivElement,{}>((props,ref) => {
             />
           ) : null}
         </li>
-        <li>
-          <NavLink
-            to="/diary"
-            activeStyle={{
-              color: "blue"
-            }}
-          >
-            <LinkStyle>
-              <Icon name="diary" />
-              <span>日记</span>
-            </LinkStyle>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/more"
-            activeStyle={{
-              color: "blue"
-            }}
-          >
-            <LinkStyle>
-              <Icon name="more" />
-              <span>更多</span>
-            </LinkStyle>
-          </NavLink>
-        </li>
+        {/*<li>*/}
+        {/*  <NavLink*/}
+        {/*    to="/diary"*/}
+        {/*    activeStyle={{*/}
+        {/*      color: "blue"*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <LinkStyle>*/}
+        {/*      <Icon name="diary" />*/}
+        {/*      <span>日记</span>*/}
+        {/*    </LinkStyle>*/}
+        {/*  </NavLink>*/}
+        {/*</li>*/}
+        {/*<li>*/}
+        {/*  <NavLink*/}
+        {/*    to="/more"*/}
+        {/*    activeStyle={{*/}
+        {/*      color: "blue"*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <LinkStyle>*/}
+        {/*      <Icon name="more" />*/}
+        {/*      <span>更多</span>*/}
+        {/*    </LinkStyle>*/}
+        {/*  </NavLink>*/}
+        {/*</li>*/}
       </ul>
     </NavStyle>
   );

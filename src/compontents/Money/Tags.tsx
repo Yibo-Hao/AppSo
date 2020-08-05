@@ -102,7 +102,7 @@ export default function TagsMoney(props: Props) {
     return "wait";
   };
   const onChange = (value: string) => {
-    theme.name === "cost" ? addIncomeTag(value) : addCostTag(value);
+    theme.name === "income" ? addIncomeTag(value) : addCostTag(value);
   };
   return (
     <TagsStyle iconBackground={theme.icon.background}>
